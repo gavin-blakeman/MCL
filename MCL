@@ -1,0 +1,120 @@
+﻿//*********************************************************************************************************************************
+//
+// PROJECT:							Math Class Library
+// FILE:                MCL
+// SUBSYSTEM:						Maths class library.
+// LANGUAGE:						C++
+// TARGET OS:						WINDOWS/UNIX/LINUX/MAC
+// LIBRARY DEPENDANCE:	None.
+// NAMESPACE:						MCL
+// AUTHOR:							Gavin Blakeman.
+// LICENSE:             GPLv2
+//
+//                      Copyright 2012-2017 Gavin Blakeman.
+//                      This file is part of the Maths Class Library (MCL)
+//
+//                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+//                      License as published by the Free Software Foundation, either version 2 of the License, or (at your option)
+//                      any later version.
+//
+//                      MCL is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+//                      warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+//                      more details.
+//
+//                      You should have received a copy of the GNU General Public License along with MCL.  If not, see
+//                      <http://www.gnu.org/licenses/>.
+//
+// OVERVIEW:            The MCL is a collection of mathematics functions for C++. The library uses templates as far as possible.
+//                      All computationally intensive functions are multi-threaded as far as possible.
+//
+// CLASSES INCLUDED:
+//
+//
+// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
+//                      2014-01-13 GGB - Added file statistics/sum.hpp to the library
+//                      2013-07-28 GGB - Added file statistics/median.hpp and utility/sort.hpp to the library.
+//                      2013-03-22 GGB - AIRDAS 2013.03 release.
+//                      2013-01-20 GGB - AIRDAS 0000.00 release.
+//                      2012-12-26 GGB - File created.
+//
+//*********************************************************************************************************************************
+
+/// @mainpage Maths Class Library (MCL).
+/// @section Introduction
+/// The maths class library implements a number of maths functions and some maths functionality. Wherever possible, the functions
+/// are multi-threaded. Extensive use is made of the Boost C++ library.
+/// The library is written in C++14.<br>
+/// The library is written as an operating system independent library.
+/// @section Dependencies
+/// The following open source libraries are required by the Astronomy Class library.
+/// @arg Boost Library <a href="http//www.boost.org">Boost C++ Libraries</a>
+/// @arg GCL <a href="http://www.theroboticobservatory.org">General Class Library</a>
+/// @arg SCL <a href="http://www.theroboticobservatory.org">Storage Class Library</a>
+///
+/// @section Compilation Control
+/// The following macros control how the code will be compiled for various applications.
+/// @li @b MCL_NOBOOST - Do not use the Boost C++ libraries. This should only be used on platforms where the Boost C++ libraries are
+///        not  supported. By default the Boost C++ libraries are enabled.
+/// @li @b MCL_NOMT - Do not use multi-threading. This should only be used on platforms where multi-threading is not available. By
+/// 									 default, multi-threading support is enabled.
+/// @li @b MCL_REALTIME - Compile in the realtime library support. By default this will not be compiled in.
+/// @li @b MCL_NOSTRINGS - Compile without using strings. This is intended to be used for embedded applications.
+/// @li @b EMBEDDED - Compile the library for embedded applications.
+/// @li @b MCL_CONTROL - Compile the library for control type applications.
+///
+/// @section Projects
+/// The Astronomy Class Library is used as the Astronomy Library by the following projects.
+/// @li Astronomical Image Reduction and Data Analysis Software.  (<a href="http://www.airdas.net">AIRDAS</a>)
+/// @li The Robotic Observatory Project (<a href="http://www.theroboticobservatory.org">The Robotic Observatory</a>)
+///
+/// @section Development
+/// The library is still under active development and is being expanded and improved along with the development of the AIRDAS
+/// application.
+/// @par Note
+/// The classes within this library have been in development from 2005. As a result, all the code is not written using the
+/// C++14 functionality. There is an opportunity to "clean" up the code by updating the code to reflect the C++14 standard.
+/// All new code that is being developed is written to the C++14 standard.<br>
+/// All C string functions will be phased out over time. Any new code should not include C string functions, but should rather use
+/// the C++ std::string classes.
+/// @par Reporting Bugs
+/// Bugs are tracked on the bugzilla database used by <a href="https://bugzilla.theroboticobservatory.org">The Robotic
+/// Observatory project.</a>. The bugs should be entered against the ACL project.
+/// @par Source Code
+/// The source code can be downloaded as a zipped file from the <a href="https://bugzilla.theroboticobservatory.org">The Robotic
+/// Observatory project.</a>.<br>
+/// The source code is also included in the source package for the <a href="http://www.airdas.net">AIRDAS Project</a>. Where it
+/// can be downloaded from the project site, or from the project site on Launchpad.
+///
+/// @section Legal
+/// @author Gavin Blakeman (GGB)
+/// @version 2013.09
+/// @copyright 2005-2016 Gavin Blakeman
+/// @par Licence
+/// The Math Class Library is licensed under the GPLv2. The full text of the GPLv2 can be found in the file license.txt that
+/// is distributed with the source of the library.<br>
+/// The Math Class Library is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+/// License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.<br>
+/// The Math Class Library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+/// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br>
+/// You should have received a copy of the GNU General Public License along with the Math Class Library.  If not, see
+/// <a href="http://www.gnu.org/licenses/">The GNU Project</a>
+
+
+#include "Include/angle.h"
+#include "Include/config.h"
+#include "Include/constants.h"
+#include "Include/functions.hpp"
+#include "Include/numeric.h"
+#include "Include/Trigonometry.hpp"
+#include "Include/TPoint2D.hpp"
+#include "Include/TVector3.hpp"
+
+#include "Include/Statistics/mean.hpp"
+#include "Include/Statistics/median.hpp"
+#include "Include/Statistics/MinMax.hpp"
+#include "Include/Statistics/stdev.hpp"
+#include "Include/Statistics/sum.hpp"
+#include "Include/Statistics/variance.hpp"
+
+
+#include "Include/Utility/sort.hpp"
