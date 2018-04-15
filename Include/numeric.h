@@ -26,7 +26,7 @@
 //
 // OVERVIEW:            The CNumeric class provides a class with a type that can be selected on the fly.
 //
-// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
+// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
 //                      2015-07-07 GGB - File Created.
 //
 //**********************************************************************************************************************************

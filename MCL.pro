@@ -23,14 +23,14 @@ else:unix:CONFIG(release, debug|release) {
   OBJECTS_DIR = "../Library/unix/release/object/MCL"
 }
 else:unix:CONFIG(debug, debug|release) {
-  DESTDIR = "../Library/unix/debug"
-  OBJECTS_DIR = "../Library/unix/debug/object/MCL"
+  DESTDIR = ""
+  OBJECTS_DIR = "objects"
 }
 
-QMAKE_CXXFLAGS += -std=c++14
+QMAKE_CXXFLAGS += -std=c++17
 
 INCLUDEPATH += \
-  "../Boost/boost 1.62" \
+  "../boost 1.62" \
   "../GCL"
 
 SOURCES += \

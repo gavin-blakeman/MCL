@@ -31,11 +31,11 @@
 // FUNCTIONS INCLUDED:  MinMax(...)
 //
 //
-// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
-//                      2013-09-30 GGB - AIRDAS 2013.09 release.
+// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+//                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-08-02/GGB - Updated to 64bit compliance.
-//                      2013-03-20/GGB - AIRDAS 2013.03 release.
-//                      2013-01-22/GGB - AIRDAS 0000.00 release.
+//                      2013-03-20/GGB - astroManager 2013.03 release.
+//                      2013-01-22/GGB - astroManager 0000.00 release.
 //                      2012-11-30 GGB - Development of file for openAIRS application.
 //
 //*********************************************************************************************************************************

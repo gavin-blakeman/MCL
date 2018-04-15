@@ -26,7 +26,7 @@
 //
 // OVERVIEW:            Implementation of shared definintions.
 //
-// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
+// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
 //
 //*************************************************************************************************
 

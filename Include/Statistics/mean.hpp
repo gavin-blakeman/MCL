@@ -32,12 +32,12 @@
 //                      mean(valarray)
 //
 //
-// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
+// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
 //                      2015-07-10/GGB - Added function mean(T *)
-//                      2013-09-30 GGB - AIRDAS 2013.09 release.
+//                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-08-02/GGB - Updated to be 64bit compliant.
 //                      2013-03-22/GGB - Mean function tested against known data.
-//                      2012-11-29 GGB - Development of file for AIRDAS application.
+//                      2012-11-29 GGB - Development of file for astroManager application.
 //
 //*********************************************************************************************************************************
 

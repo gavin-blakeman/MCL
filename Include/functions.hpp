@@ -26,7 +26,7 @@
 //
 // OVERVIEW:            Provides some overloaded mathematical functions.
 //
-// HISTORY:             2015-09-22 GGB - AIRDAS 2015.09 release
+// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
 //                      2014-01-13 GGB - File Created.
 //
 //*************************************************************************************************
