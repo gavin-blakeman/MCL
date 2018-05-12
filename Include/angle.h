@@ -87,12 +87,12 @@ namespace MCL
       // Conversion functions
 
     virtual FP_t degrees() const { return angle_ * K_R2D; }
-    virtual FP_t hours() const { return angle_ * K_R2H; }
+    virtual FP_t hours() const;
     virtual FP_t radians() const { return angle_; }
 
       // Stringification functions
 
-    virtual std::string A2SD() const {};
+    virtual std::string A2SD() const {}
     virtual std::string A2SHMS() const;
     virtual std::string A2SDMS() const;
 

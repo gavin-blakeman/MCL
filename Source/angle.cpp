@@ -279,4 +279,21 @@ namespace MCL
     return returnValue;
   }
 
+  /// @brief Converts the angle value into an hh.hhh value.
+  /// @returns angle converted to hh.hhhh
+  /// @version 2018-05-12/GGB - Corrected error with conversion.
+
+  FP_t CAngle::hours() const
+  {
+    FP_t returnValue = std::fabs(angle_ * K_R2D);
+    FP_t hrsValue, fractionalPart;
+
+    fractionalPart = std::modf(returnValue, &hrsValue);
+    hrsValue /= K_DPH;
+
+    returnValue = hrsValue + fractionalPart;
+
+    return returnValue;
+  }
+
 }   // namespace MCL
