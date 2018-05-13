@@ -187,7 +187,7 @@ namespace MCL
 
   std::string CAngle::A2SHMS() const
   {
-    return GCL::sprintfHMS(angle_ * K_R2H);
+    return GCL::sprintfHMS(hours());
   }
 
   /// @brief Converts the angle to a string of the form dd:mm:ss.ss"
@@ -197,7 +197,7 @@ namespace MCL
 
   std::string CAngle::A2SDMS() const
   {
-    return GCL::sprintfDMS(angle_ * K_R2D);
+    return GCL::sprintfDMS(degrees());
   }
 
   /// @brief Convert an angle in a specified format to radians.
