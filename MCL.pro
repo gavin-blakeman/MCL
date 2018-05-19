@@ -43,7 +43,6 @@ SOURCES += \
 
 HEADERS += \
     Include/MCLError.h \
-    Include/TVector3.hpp \
     Include/TPoint2D.hpp \
     Include/constants.h \
     Include/Statistics/variance.hpp \
@@ -59,5 +58,6 @@ HEADERS += \
     Include/common.h \
     Include/numeric.h \
     Include/angle.h \
-    Include/functions.hpp
+    Include/functions.hpp \
+    Include/TVector3D.hpp
 

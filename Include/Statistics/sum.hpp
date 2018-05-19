@@ -88,9 +88,9 @@ namespace MCL
 
 #else // MCL_NOBOOST
 
-  /// Thread function called by MCL::sum(...) to determine the sum of an array
-  //
-  // 2014-01-13/GGB - Function created.
+  /// @brief Thread function called by MCL::sum(...) to determine the sum of an array
+  /// @param[in]
+  /// 2version 2014-01-13/GGB - Function created.
 
   template<typename T>
   void sumThread(std::valarray<T> const &data, size_t indexStart, size_t indexEnd, FP_t &sum)
@@ -102,7 +102,7 @@ namespace MCL
       sum += data[index];
   }
 
-  /// Determines the sum of the array
+  /// @brief Determines the sum of the array
   //
   // 2014-01-13/GGB - Function created.
 
@@ -125,9 +125,13 @@ namespace MCL
 
       numberOfThreads = count / 1000;
       if (numberOfThreads == 0)
+      {
         numberOfThreads = 1;
+      }
       else if (numberOfThreads > maxThreads)
+      {
         numberOfThreads = maxThreads;
+      };
 
       stepSize = count / numberOfThreads;
 
@@ -139,9 +143,14 @@ namespace MCL
       {
         indexBegin = indexEnd;
         if (threadNumber == (numberOfThreads - 1) )
+        {
           indexEnd = count;
+        }
         else
+        {
           indexEnd += stepSize;
+        };
+
         thread = new boost::thread(&sumThread<T>, boost::cref(data), indexBegin, indexEnd, boost::ref(sums[threadNumber]));
         threadGroup.add_thread(thread);
         thread = nullptr;
@@ -150,7 +159,9 @@ namespace MCL
       threadGroup.join_all();     // Wait for all the threads to finish.
 
       for(index = 0; index < numberOfThreads; index++)
+      {
         returnValue += sums[index];
+      };
 
       return returnValue;
     };

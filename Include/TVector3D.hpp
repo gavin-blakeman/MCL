@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2017 Gavin Blakeman.
+//                      Copyright 2012-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -26,9 +26,10 @@
 //
 // OVERVIEW:            Implementation of a 3D templated point class.
 //
-// CLASSES INCLUDED:    TVector3
+// CLASSES INCLUDED:    TVector3D
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2018-05-19/GGB - Changed class name to TVector3D.
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2012-12-26 GGB - File created.
 //
 //*********************************************************************************************************************************
@@ -65,9 +66,10 @@ namespace MCL
     inline T &y() { return value[1];}
     inline T &z() { return value[2];}
 
-    /// Adds two vectors.
-    //
-    // 2014-03-13/GGB - Function created.
+    /// @brief Adds two vectors.
+    /// @param[in] rhs - The vector to add to *this.
+    /// @returns The sum of *this and rhs
+    /// @version 2014-03-13/GGB - Function created.
 
     inline TVector3<T> operator +(TVector3<T> const &rhs) const
     {
@@ -163,9 +165,11 @@ namespace MCL
       return (value[0] * rhs.value[0] + value[1] * rhs.value[1] + value[2] * rhs.value[2]);
     }
 
-    /// Determines the normal (unit vector) of the vector.
-    //
-    // 2012-12-28/GGB - Function created.
+    /// @brief Determines the normal (unit vector) of the vector.
+    /// @details - Normalises the length of the vector to 1. (unit vector)
+    /// @returns - The normalised vector.
+    /// @throws None.
+    /// @version 2012-12-28/GGB - Function created.
 
     inline TVector3 normalise() const
     {
@@ -180,7 +184,9 @@ namespace MCL
     }
 
 
-    /// Returns the cross product of two 3D vectors.
+    /// @brief Returns the cross product of two 3D vectors.
+    /// @param[in] rhs = The vector to cross product with this vector.
+    /// @returns
     //
     // 2012-12-27/GGB - Function created.
 
@@ -197,9 +203,10 @@ namespace MCL
 
   };  // class TVector3
 
-  /// Function to determine the ceil() of a vector.
-  //
-  // 2013-01-13/GGB - Function created.
+  /// @brief Function to determine the ceil() of a vector.
+  /// @param[in] val - The vector to determine the ceiling of.
+  /// @returns The vector ceiling.
+  /// @version 2013-01-13/GGB - Function created.
 
   template<typename U>
   TVector3<U> ceil(TVector3<U> const &val)
