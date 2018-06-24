@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       -= core gui
-
 TARGET = MCL
 TEMPLATE = lib
 CONFIG += staticlib
+
+#QT       -= core gui
 
 win32:CONFIG(release, debug|release) {
   DESTDIR = "../Library/win32/release"
