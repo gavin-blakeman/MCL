@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.(GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2017 Gavin Blakeman.
+//                      Copyright 2011-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -91,9 +91,10 @@ namespace MCL
     TPoint2D &operator=(TPoint2D const &);
     virtual TPoint2D operator-(const TPoint2D &);
 
-    /// Typecase operator
-    //
-    // 2013-06-08/GGB - Function created.
+    /// @brief Typecast operator
+    /// @returns The value typecast to the new type.
+    /// @throws None.
+    /// @version 2013-06-08/GGB - Function created.
 
     template<typename U>
     operator TPoint2D<U>() const
@@ -133,9 +134,11 @@ namespace MCL
     }
   };
 
-  // Subtraction operator.
-  //
-  // 2011-08-28/GGB - Function created
+  /// @brief Subtraction operator.
+  /// @param[in] rhs - The right hand value to add.
+  /// @returns Object representing the added values.
+  /// @throws None.
+  /// @version 2011-08-28/GGB - Function created
 
   template<typename T>
   TPoint2D<T> TPoint2D<T>::operator-(const TPoint2D<T> &rhs)
