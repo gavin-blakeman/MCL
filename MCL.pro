@@ -31,7 +31,8 @@ QMAKE_CXXFLAGS += -std=c++17
 
 INCLUDEPATH += \
   "../boost 1.62" \
-  "../GCL"
+  "../GCL" \
+  "../SCL"
 
 SOURCES += \
     Source/angle.cpp \
