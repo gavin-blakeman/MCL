@@ -9,6 +9,7 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 #QT       -= core gui
+QMAKE_CXXFLAGS += -std=c++17
 
 win32:CONFIG(release, debug|release) {
   DESTDIR = "../Library/win32/release"
@@ -26,8 +27,6 @@ else:unix:CONFIG(debug, debug|release) {
   DESTDIR = ""
   OBJECTS_DIR = "objects"
 }
-
-QMAKE_CXXFLAGS += -std=c++17
 
 INCLUDEPATH += \
   "../boost 1.62" \
