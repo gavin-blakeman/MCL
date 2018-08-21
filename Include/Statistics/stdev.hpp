@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2016 Gavin Blakeman.
+//                      Copyright 2013-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -42,21 +42,18 @@
 #ifndef MCL_STANDARDDEVIATION_HPP
 #define MCL_STANDARDDEVIATION_HPP
 
+  // Standard libraries
+
+#include <cstdint>
+#include <optional>
+#include <valarray>
+
   // MCL Library
 
 #include "../config.h"
 #include "variance.hpp"
 
-  // Standard libraries
-
-#include <cstdint>
-#include <valarray>
-
 #ifndef MCL_NOBOOST
-
-  // Boost Library
-
-#include "boost/optional/optional.hpp"
 
 #ifndef MCL_NOMT
 #include "boost/thread/thread.hpp"
@@ -110,9 +107,9 @@ namespace MCL
   // 2013-03-21/GGB - Function created.
 
   template<typename T>
-  boost::optional<FP_t> stdev(std::valarray<T> const &data)
+  std::optional<FP_t> stdev(std::valarray<T> const &data)
   {
-    boost::optional<FP_t> returnValue(sqrt(*variance(data)));
+    std::optional<FP_t> returnValue(sqrt(*variance(data)));
 
     return returnValue;
   }
@@ -121,9 +118,9 @@ namespace MCL
   /// @version 2013-03-21/GGB - Function created.
 
   template<typename T>
-  boost::optional<FP_t> stdev(T * data, size_t elementCount)
+  std::optional<FP_t> stdev(T * data, size_t elementCount)
   {
-    boost::optional<FP_t> returnValue(sqrt(*variance(data, elementCount)));
+    std::optional<FP_t> returnValue(sqrt(*variance(data, elementCount)));
 
     return returnValue;
   }

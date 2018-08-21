@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2016 Gavin Blakeman.
+//                      Copyright 2013-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -42,30 +42,27 @@
 #ifndef MCL_STATISTICS_VARIANCE_HPP
 #define MCL_STATISTICS_VARIANCE_HPP
 
+  // Standard C++ libraries
+
+#include <cstdint>
+#include <optional>
+#include <valarray>
+
   // MCL Library
 
 #include "../config.h"
 #include "../functions.hpp"
 
-  // Standard libraries
-
-#include <cstdint>
-#include <valarray>
-
   // Boost Library
 
 
 #ifndef MCL_NOBOOST
-#include "boost/optional/optional.hpp"
 #include "boost/scoped_array.hpp"
 
 #ifndef MCL_NOMT
 #include "boost/thread/thread.hpp"
 #endif // MCL_NOMT
 #endif // MCL_NOBOOST
-
-
-
 
 namespace MCL
 {
@@ -136,7 +133,7 @@ namespace MCL
   // 2015-08-30/GGB - Function created.
 
   template<typename T>
-  boost::optional<FP_t> variance(T *data, size_t dataCount)
+  std::optional<FP_t> variance(T *data, size_t dataCount)
   {
     size_t numberOfThreads;
     size_t threadNumber;
@@ -148,11 +145,11 @@ namespace MCL
 
     if (dataCount == 0)
     {
-      return boost::optional<FP_t>();
+      return std::optional<FP_t>();
     }
     else if (dataCount == 1)
     {
-      return boost::optional<FP_t>(0);
+      return std::optional<FP_t>(0);
     }
     else
     {
@@ -226,7 +223,7 @@ namespace MCL
         variance = M2 / (count - 1);
       };
 
-      return boost::optional<FP_t>(variance);
+      return std::optional<FP_t>(variance);
     };
   }
 
