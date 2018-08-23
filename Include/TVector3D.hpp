@@ -113,7 +113,7 @@ namespace MCL
       return *this;
     }
 
-    /// Less than equal to operator
+    /// @brief Less than equal to operator
     //
     // 2013-01-10/GGB - Function created.
 

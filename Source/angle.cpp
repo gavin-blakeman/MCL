@@ -1,4 +1,4 @@
-//*********************************************************************************************************************************
+﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Maths Class Library
 // FILE:								angle
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2015-2017 Gavin Blakeman.
+//                      Copyright 2015-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General
@@ -36,6 +36,8 @@
 //*********************************************************************************************************************************
 
 #include "../Include/angle.h"
+
+  // MCL library header files.
 
 #include "../Include/constants.h"
 
@@ -221,7 +223,7 @@ namespace MCL
       };
       case AF_Dd:
       {
-        returnValue = value * K_D2R;
+        returnValue = value * D_D2R;
         break;
       };
       case AF_DMSs:   // format = DDMMSS.ssssss
@@ -233,15 +235,15 @@ namespace MCL
         value -= returnValue;
         value *= 100;
         temp = std::floor(value);
-        returnValue += temp / K_MPH;     // minutes
+        returnValue += temp / D_MPH;     // minutes
         value -= temp;
         value *= 100;
         temp = std::floor(value);
-        returnValue += temp / K_SPH;   // seconds
+        returnValue += temp / D_SPH;   // seconds
         value -= temp;
-        value /= K_SPH;
+        value /= D_SPH;
         returnValue += value;
-        returnValue *= K_D2R;
+        returnValue *= D_D2R;
         break;
       };
       case AF_HMSs:    // format = HHMMSS.ssssss
@@ -251,18 +253,18 @@ namespace MCL
         value /= 10000;
         returnValue = std::floor(value);
         value -= returnValue;
-        returnValue *= K_DPH;                 // Degrees
+        returnValue *= D_DPH;                 // Degrees
         value *= 100;
         temp = std::floor(value);
-        returnValue += temp / K_MPH;             // minutes
+        returnValue += temp / D_MPH;             // minutes
         value -= temp;
         value *= 100;
         temp = std::floor(value);
-        returnValue += temp / K_SPH;          // seconds
+        returnValue += temp / D_SPH;          // seconds
         value -= temp;
-        value /= K_SPH;
+        value /= D_SPH;
         returnValue += value;
-        returnValue *= K_D2R;
+        returnValue *= D_D2R;
         break;
       };
       case AF_RADIANS:
@@ -285,11 +287,11 @@ namespace MCL
 
   FP_t CAngle::hours() const
   {
-    FP_t returnValue = std::fabs(angle_ * K_R2D);
+    FP_t returnValue = std::fabs(angle_ * D_R2D);
     FP_t hrsValue, fractionalPart;
 
     fractionalPart = std::modf(returnValue, &hrsValue);
-    hrsValue /= K_DPH;
+    hrsValue /= D_DPH;
 
     returnValue = hrsValue + fractionalPart;
 

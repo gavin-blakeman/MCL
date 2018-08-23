@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2014-2016 Gavin Blakeman.
+//                      Copyright 2014-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -34,13 +34,46 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
+  // Standard C++ library header files.
+
 #include <cmath>
+
+  // MCL library header files
+
+#include "constants.h"
 
 namespace MCL
 {
-  /// Raise a number to power 2.
-  //
-  // 2014-12-31/GGB - Function created.
+  /// @brief Function to convert degrees to radians.
+  /// @param[in] x: The value to convert.
+  /// @returns The value in degrees.
+  /// @throws None.
+  /// @version 2018-08-23/GGB - Function created.
+
+  template<typename T>
+  inline T D2R(T const &x)
+  {
+    return x * D_D2R;
+  }
+
+  /// @brief Function to convert radians to degrees.
+  /// @param[in] x: The value to convert.
+  /// @returns The value in degrees.
+  /// @throws None.
+  /// @version 2018-08-23/GGB - Function created.
+
+  template<typename T>
+  inline T R2D(T const &x)
+  {
+    return x * D_R2D;
+  }
+
+
+  /// @brief Raise a number to power 2.
+  /// @param[in] x: Value to square.
+  /// @returns The value x^2.
+  /// @throws None.
+  /// @version 2014-12-31/GGB - Function created.
 
   template<typename T>
   inline T pow2(T x)
@@ -58,23 +91,42 @@ namespace MCL
     return x * x * x;
   }
 
-  /// Calculates the Modulo with range N
-  //
-  // 2013-01-13/GGB - Function created.
+  /// @brief Calculates the Modulo with range[0; range]
+  /// @param[in] val: The value to modulo.
+  /// @param[in] range: The range to work with.
+  /// @returns The value within the range [0; range]
+  /// @version 2013-01-13/GGB - Function created.
 
   template<typename T, typename U>
   inline T moduloN(T val, U range)
   {
-    T returnValue;
-
-    returnValue = val - range * std::floor(val/range);
-
-    return returnValue;
+    return (val - range * std::floor(val/range));
   }
 
-  /// Convert a number to a long.
-  //
-  // 2014-12-31/GGB - Function created.
+  /// @brief Calulates the modulo with a range of [-range; range]
+  /// @param[in] val: The value to modulo.
+  /// @param[in] range: The range to work within.
+  /// @returns The value within the +- range limits given
+  /// @version 2018-08-23/GGB - Function created.
+
+  template<typename T, typename U>
+  inline T moduloR(T val, U range)
+  {
+    T returnValue;
+
+    returnValue = moduloN(val + range, range * 2);
+
+    returnValue -= range;
+
+    return returnValue;
+
+  }
+
+  /// @brief Convert a number to a long.
+  /// @param[in] dbl: The value to convert.
+  /// @returns the number as a long integer value
+  /// @throws None.
+  /// @version 2014-12-31/GGB - Function created.
 
   template<typename T>
   inline long INT(T dbl)

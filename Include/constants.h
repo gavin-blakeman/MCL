@@ -48,15 +48,15 @@ namespace MCL
 
     // Time
 
-  FP_t const K_DPH      = 15;                               ///< Degrees per hour.
-  FP_t const K_MPH      = 60;                               ///< Minutes per hour
-  FP_t const K_SPH      = 3600;                             ///< Seconds per hour
+  FP_t const D_DPH      = 15;                               ///< Degrees per hour.
+  FP_t const D_MPH      = 60;                               ///< Minutes per hour
+  FP_t const D_SPH      = 3600;                             ///< Seconds per hour
 
     // Angles
 
-  FP_t const K_D2R      = D_PI / 180;                       ///< Degree to radian conversion.
-  FP_t const K_R2D      = 180 / D_PI;                       ///< Radians to degrees conversion.
-  FP_t const K_R2H      = 12 / D_PI;                        ///< Radians to hours conversion.
+  FP_t const D_D2R      = D_PI / 180;                       ///< Degree to radian conversion.
+  FP_t const D_R2D      = 180 / D_PI;                       ///< Radians to degrees conversion.
+  FP_t const D_R2H      = 12 / D_PI;                        ///< Radians to hours conversion.
 
 }
 
