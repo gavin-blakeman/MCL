@@ -102,9 +102,10 @@ namespace MCL
 
 #else // MCL_NOMT
 
-  /// Calculates the stdev of the data using the multi-threaded variance.
-  //
-  // 2013-03-21/GGB - Function created.
+  /// @brief Calculates the stdev of the data using the multi-threaded variance.
+  /// @param[in] data: The array containing the data.
+  /// @throws None.
+  /// @version 2013-03-21/GGB - Function created.
 
   template<typename T>
   std::optional<FP_t> stdev(std::valarray<T> const &data)
@@ -115,6 +116,7 @@ namespace MCL
   }
 
   /// @brief Calculates the stdev of the data using the multi-threaded variance.
+  /// @throws None.
   /// @version 2013-03-21/GGB - Function created.
 
   template<typename T>

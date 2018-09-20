@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2016 Gavin Blakeman.
+//                      Copyright 2012-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -31,7 +31,8 @@
 // FUNCTIONS INCLUDED:  MinMax(...)
 //
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2018-09-19 GGB - Change boost::optional to std::optional
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-08-02/GGB - Updated to 64bit compliance.
 //                      2013-03-20/GGB - astroManager 2013.03 release.
@@ -43,23 +44,23 @@
 #ifndef MCL_STATISTICS_MINMAX_HPP
 #define MCL_STATISTICS_MINMAX_HPP
 
+  // Standard C++ library header files.
+
+#include <cstdint>
+#include <memory>
+#include <optional>
+#include <tuple>
+
   // MCL Library
 
 #include "../config.h"
 
-  // Standard library.
-
-#include <cstdint>
 
 #ifndef MCL_NOBOOST
   // Boost Library
-
-#include "boost/optional/optional.hpp"
-#include "boost/scoped_array.hpp"
 #ifndef MCL_NOMT
 #include "boost/thread/thread.hpp"
 #endif //MCL_NOMT
-#include "boost/tuple/tuple.hpp"
 
 #endif // MCL_NOBOOST
 
@@ -186,10 +187,10 @@ namespace MCL
 
 #else // MCL_NOBOOST
 
-  /// Thread function to determine the maximum value in an array.
-  //
-  // 2013-08-02/GGB - Updated to use valarray const & and T for data.
-  // 2012-11-30/GGB - Function created.
+  /// @brief Thread function to determine the maximum value in an array.
+  /// @param[in] data:
+  /// @version 2013-08-02/GGB - Updated to use valarray const & and T for data.
+  /// @version 2012-11-30/GGB - Function created.
 
   template<typename T>
   void maxThread(std::valarray<T> const &data, size_t indexStart, size_t indexEnd, T &max)
@@ -208,12 +209,13 @@ namespace MCL
   }
 
   /// @brief Function to determine the maximum value in an array.
-  //
-  // 2013-08-02/GGB - Updated to use valarray const & and T for data.
-  // 2012-11-30/GGB - Function created.
+  /// @param[in] data: The valarray with the data.
+  /// @version 2018-09-19/GGB - Use and return std::optional instead of boost::optional.
+  /// @version 2013-08-02/GGB - Updated to use valarray const & and T for data.
+  /// @version 2012-11-30/GGB - Function created.
 
   template<typename T>
-  boost::optional<T> max(std::valarray<T> const &data)
+  std::optional<T> max(std::valarray<T> const &data)
   {
     size_t numberOfThreads;
     size_t threadNumber;
@@ -227,7 +229,7 @@ namespace MCL
 
     if (data.size() == 0)
     {
-      return boost::optional<T>();
+      return std::optional<T>();
     }
     else
     {
@@ -246,7 +248,7 @@ namespace MCL
 
       stepSize = data.size() / numberOfThreads;
 
-      boost::scoped_array<T> maxs(new T[numberOfThreads]);
+      std::unique_ptr<T []> maxs(new T[numberOfThreads]);
 
         // Spawn the threads.
 
@@ -254,9 +256,13 @@ namespace MCL
       {
         indexBegin = indexEnd;
         if (threadNumber == (numberOfThreads -1) )
+        {
           indexEnd = data.size() -1;
+        }
         else
+        {
           indexEnd += stepSize;
+        };
         thread = new boost::thread(&maxThread<T>, boost::cref(data), indexBegin, indexEnd, boost::ref(maxs[threadNumber]));
         threadGroup.add_thread(thread);
         thread = nullptr;
@@ -274,12 +280,12 @@ namespace MCL
         }
       }
 
-      return boost::optional<T>(returnValue);
+      return std::optional<T>(returnValue);
     };
   }
 
-  /// Thread function to determine the minimum value in an array.
-  //
+  /// @brief Thread function to determine the minimum value in an array.
+  /// @param[in]
   // 2013-08-02/GGB - Updated to use valarray const & and T for data.
   // 2012-11-30/GGB - Function created.
 
@@ -295,13 +301,14 @@ namespace MCL
         min = data[index];
   }
 
-  /// Function to determine the minimum value in an array.
+  /// @brief Function to determine the minimum value in an array.
   //
-  // 2013-08-02/GGB - Updated to use valarray const & and T for data.
-  // 2012-11-30/GGB - Function created.
+  /// @version 2018-09-19/GGB - Use and return std::optional instead of boost::optional.
+  /// @version 2013-08-02/GGB - Updated to use valarray const & and T for data.
+  /// @version 2012-11-30/GGB - Function created.
 
   template<typename T>
-  boost::optional<T> min(std::valarray<T> const &data)
+  std::optional<T> min(std::valarray<T> const &data)
   {
     size_t numberOfThreads;
     size_t threadNumber;
@@ -313,16 +320,22 @@ namespace MCL
     T returnValue = 0;
 
     if (data.size() == 0)
-      return boost::optional<T>();
+    {
+      return std::optional<T>();
+    }
     else
     {
        // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values.
 
       numberOfThreads = data.size() / 1000;
       if (numberOfThreads == 0)
+      {
         numberOfThreads = 1;
+      }
       else if (numberOfThreads > maxThreads)
+      {
         numberOfThreads = maxThreads;
+      }
 
       stepSize = data.size() / numberOfThreads;
 
@@ -334,9 +347,13 @@ namespace MCL
       {
         indexBegin = indexEnd;
         if (threadNumber == (numberOfThreads -1) )
+        {
           indexEnd = data.size() -1;
+        }
         else
+        {
           indexEnd += stepSize;
+        };
         thread = new boost::thread(&minThread<T>, boost::cref(data), indexBegin, indexEnd, boost::ref(mins[threadNumber]));
         threadGroup.add_thread(thread);
         thread = nullptr;
@@ -347,10 +364,14 @@ namespace MCL
       returnValue = mins[0];
 
       for(index = 1; index < numberOfThreads; index++)
+      {
         if (mins[index] < returnValue)
+        {
           returnValue = mins[index];
+        };
+      };
 
-      return boost::optional<T>(returnValue);
+      return std::optional<T>(returnValue);
     };
   }
 
@@ -387,10 +408,11 @@ namespace MCL
   /// @param[in] dataCount - The number of elements in the array.
   /// @returns The min and max value of the elements within the array.
   /// @throws None.
+  /// @version 2018-09-19/GGB - Use and return std::optional instead of boost::optional.
   /// @version 2015-08-30/GGB - Function created.
 
   template<typename T>
-  boost::optional<boost::tuple<T, T> > minmax(T *data, size_t dataCount)
+  std::optional<std::tuple<T, T> > minmax(T *data, size_t dataCount)
   {
     size_t numberOfThreads;
     size_t threadNumber;
@@ -404,7 +426,7 @@ namespace MCL
 
     if (dataCount == 0)
     {
-      return boost::optional<boost::tuple<T, T> >();
+      return std::optional<std::tuple<T, T> >();
     }
     else
     {
@@ -463,7 +485,7 @@ namespace MCL
         };
       };
 
-      return boost::optional<boost::tuple<T, T> >(boost::tuple<T, T>(min, max));
+      return std::optional<std::tuple<T, T> >(std::tuple<T, T>(min, max));
     };
   }
 #endif // MCL_NOBOOST

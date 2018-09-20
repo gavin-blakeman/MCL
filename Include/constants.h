@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2017 Gavin Blakeman.
+//                      Copyright 2011-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -40,11 +40,12 @@
 
 namespace MCL
 {
-  const FP_t D_PI       = 3.141592653589793238462643;       // PI
-  const FP_t D_2PI      = 6.283185307179586476925287;       // 2 * PI
+  const FP_t PI         = 3.141592653589793238462643;       // PI
+  const FP_t PI_2       = PI * 2;                           // 2 * PI
   const FP_t D_SQRT2    = 1.414213562373095048801688;       // sqrt(2)
   const FP_t D_SQRT1_2  = 0.707106781186547524401;          // 1/sqrt(2)
-  const FP_t D_PIDIV2   = D_PI / 2;                         // PI / 2
+  FP_t const PI_DIV_2   = PI / 2;                           // PI / 2
+
 
     // Time
 
@@ -54,9 +55,9 @@ namespace MCL
 
     // Angles
 
-  FP_t const D_D2R      = D_PI / 180;                       ///< Degree to radian conversion.
-  FP_t const D_R2D      = 180 / D_PI;                       ///< Radians to degrees conversion.
-  FP_t const D_R2H      = 12 / D_PI;                        ///< Radians to hours conversion.
+  FP_t const D_D2R      = PI / 180;                         ///< Degree to radian conversion.
+  FP_t const D_R2D      = 180 / PI;                         ///< Radians to degrees conversion.
+  FP_t const D_R2H      = 12 / PI;                          ///< Radians to hours conversion.
 
 }
 

@@ -39,6 +39,9 @@
 //
 //*********************************************************************************************************************************
 
+#ifndef MCL_H
+#define MCL_H
+
 /// @mainpage Maths Class Library (MCL).
 /// @section Introduction
 /// The maths class library implements a number of maths functions and some maths functionality. Wherever possible, the functions
@@ -105,7 +108,7 @@
 #include "Include/constants.h"
 #include "Include/functions.hpp"
 #include "Include/numeric.h"
-#include "Include/Trigonometry.hpp"
+#include "Include/trigonometry.hpp"
 #include "Include/TPoint2D.hpp"
 #include "Include/TVector3D.hpp"
 
@@ -117,3 +120,5 @@
 #include "Include/Statistics/variance.hpp"
 
 #include "Include/Utility/sort.hpp"
+
+#endif // MCL_H

@@ -37,7 +37,7 @@
 #ifndef MCL_TVECTOR3D_HPP
 #define MCL_TVECTOR3D_HPP
 
-#include "MCLError.h"
+#include "error.h"
 
 namespace MCL
 {

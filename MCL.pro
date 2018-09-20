@@ -35,14 +35,12 @@ INCLUDEPATH += \
 
 SOURCES += \
     Source/angle.cpp \
-    Source/MCLError.cpp \
     Source/Shared.cpp \
     Source/common.cpp \
-    Source/numeric.cpp
-
+    Source/numeric.cpp \
+    Source/error.cpp
 
 HEADERS += \
-    Include/MCLError.h \
     Include/TPoint2D.hpp \
     Include/constants.h \
     Include/Statistics/variance.hpp \
@@ -53,11 +51,12 @@ HEADERS += \
     Include/Utility/sort.hpp \
     MCL \
     Include/Statistics/sum.hpp \
-    Include/Trigonometry.hpp \
     Include/config.h \
     Include/common.h \
     Include/numeric.h \
     Include/angle.h \
     Include/functions.hpp \
-    Include/TVector3D.hpp
+    Include/TVector3D.hpp \
+    Include/trigonometry.hpp \
+    Include/error.h
 

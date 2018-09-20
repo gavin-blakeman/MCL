@@ -81,9 +81,10 @@ namespace MCL
     return x * x;
   }
 
-  /// Calculates x^3 (cube)
-  //
-  // 2014-01-26/GGB - Function created.
+  /// @brief Calculates x^3 (cube)
+  /// @param[in] x: The value to cube.
+  /// @throws None.
+  /// @version 2014-01-26/GGB - Function created.
 
   template<typename T>
   inline T pow3(T x)

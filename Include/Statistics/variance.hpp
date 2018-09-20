@@ -31,7 +31,8 @@
 // FUNCTIONS INCLUDED:  variance(...)
 //
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2018-09-20 GGB - Refactoring to use std::uniqu_ptr
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-08-02/GGB - Updated to be 64bit compliant.
 //                      2013-03-22/GGB - Function tested.
@@ -42,9 +43,10 @@
 #ifndef MCL_STATISTICS_VARIANCE_HPP
 #define MCL_STATISTICS_VARIANCE_HPP
 
-  // Standard C++ libraries
+  // Standard C++ library header files
 
 #include <cstdint>
+#include <memory>
 #include <optional>
 #include <valarray>
 
@@ -55,10 +57,7 @@
 
   // Boost Library
 
-
 #ifndef MCL_NOBOOST
-#include "boost/scoped_array.hpp"
-
 #ifndef MCL_NOMT
 #include "boost/thread/thread.hpp"
 #endif // MCL_NOMT
@@ -105,8 +104,8 @@ namespace MCL
 #else   // MCL_NOMT
 
   /// @brief Variance function called by MCL::variance(...) to determine the variance of an array
-  //
-  // 2013-03-21/GGB - Function created.
+  /// @param[in] data:
+  /// @version 2013-03-21/GGB - Function created.
 
   template<typename T>
   void varianceThread(T *data, size_t indexStart, size_t indexEnd, FP_t &mean, FP_t &M2, size_t &count)
@@ -129,8 +128,11 @@ namespace MCL
   }
 
   /// @brief Multi-threaded function to calculate the variance
-  //
-  // 2015-08-30/GGB - Function created.
+  /// @param[in] data: Pointer to the data.
+  /// @param[in] dataCount: The number of data points.
+  /// @throws
+  /// @version 2018-09-20/GGB - Updated to use std::unique_ptr instead of boost scoped arrays.
+  /// @version 2015-08-30/GGB - Function created.
 
   template<typename T>
   std::optional<FP_t> variance(T *data, size_t dataCount)
@@ -167,9 +169,9 @@ namespace MCL
 
       stepSize = dataCount / numberOfThreads;
 
-      boost::scoped_array<size_t> counts(new size_t[numberOfThreads]);
-      boost::scoped_array<FP_t> means(new FP_t[numberOfThreads]);
-      boost::scoped_array<FP_t> M2s(new double[numberOfThreads]);
+      std::unique_ptr<size_t []> counts(new size_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> means(new FP_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> M2s(new FP_t[numberOfThreads]);
 
         // Spawn the threads to calculate the variance of each thread.
 

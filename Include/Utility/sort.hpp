@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2016 Gavin Blakeman.
+//                      Copyright 2013-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -40,12 +40,14 @@
 #ifndef MCL_SORT_HPP
 #define MCL_SORT_HPP
 
-#include "../config.h"
-
-  // Standard header files
+  // Standard C++ library header files
 
 #include <algorithm>
 #include <valarray>
+
+  // MCL library header files.
+
+#include "../config.h"
 
 #ifndef MCL_NOBOOST
   // Boost Library
@@ -60,7 +62,9 @@ namespace MCL
 {
 
   /// @brief Multi-threaded sorting algorithm.
-  //
+  /// @param[in] begin: Iterator to the begin.
+  /// @param[in] end: Iterator to the end.
+  /// @throws None.
   /// @version 2013-09-22/GGB - Changed std::async to boost::thread.
   /// @version 2013-07-28/GGB - Function created.
 

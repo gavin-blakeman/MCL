@@ -1,4 +1,4 @@
-//*********************************************************************************************************************************
+﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
 // FILE:								Trigonometry.h
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman. (GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2017 Gavin Blakeman.
+//                      Copyright 2012-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -45,47 +45,91 @@
 #ifndef MCL_TRIGONOMETRY_HPP
 #define MCL_TRIGONOMETRY_HPP
 
+  // Standard C++ library header files.
+
 #include <cmath>
 
-#include "MCLError.h"
+  // MCL Library header files.
+
+#include "error.h"
 #include "config.h"
+#include "functions.hpp"
 
 namespace MCL
 {
   /// @brief Calculate the cosec (1/sin) of an angle.
-  /// @param[in] a - Angle in radians.
+  /// @param[in] a: Angle in radians.
   /// @returns cosec(a)
-  /// @throws
+  /// @throws MCL::divide_by_zero.
+  /// @version 2018-08-20/GGB - Added test for zero and throw on error.
   /// @version 2014-12-31/GGB - Converted to templated function.
 
   template<typename T>
   inline FP_t cosec(T a)
   {
-    return static_cast<FP_t>(1/std::sin(static_cast<double>(a)));
+    FP_t sinValue = std::sin(static_cast<double>(a));
+
+    if (sinValue != 0)
+    {
+      return static_cast<FP_t>(1/sinValue);
+    }
+    else
+    {
+      throw divide_by_zero("Divide by zero in function cosec(a)");
+    }
   }
 
   /// @brief Calculate the sec (1/cos) of an angle.
-  /// @param[in] a - Angle in radians
+  /// @param[in] a: Angle in radians
   /// @returns sec(a)
-  /// @throws
+  /// @throws MCL::divide_by_zero.
+  /// @version 2018-08-20/GGB - Added test for zero and throw on error.
   /// @version 2014-12-31/GGB - Converted to templated function.
 
   template<typename T>
   inline FP_t sec(T a)
   {
-    return static_cast<FP_t>(1/std::cos(static_cast<double>(a)));
+    FP_t cosValue = std::cos(static_cast<double>(a));
+
+    if (cosValue != 0)
+    {
+      return static_cast<FP_t>(1/cosValue);
+    }
+    else
+    {
+      throw divide_by_zero("Divide by zero in function sec(a)");
+    }
   }
 
   /// @ brief Calculate the cot (1/tan) of an angle.
-  /// @param[in] a - Angle in radians.
+  /// @param[in] a: Angle in radians.
   /// @returns cot(a)
-  /// @throws
+  /// @throws MCL::divide_by_zero.
+  /// @version 2018-08-20/GGB - Added test for zero and throw on error.
   /// @version 2014-12-31/GGB - Converted to templated function.
 
   template<typename T>
   inline FP_t cot(T a)
   {
-    return static_cast<FP_t>(1/std::tan(static_cast<double>(a)));
+    a = moduloN(a, PI_2);     // Limit the value to a range.
+
+    if (a == PI_DIV_2 || a == (PI_DIV_2 * 3) )
+    {
+      return 0;     // While the tan function returns out of range at these points, the cot function is actually defined as zero.
+    }
+    else
+    {
+      FP_t tanValue = std::tan(static_cast<double>(a));
+
+      if (tanValue != 0)
+      {
+        return static_cast<FP_t>(1/tanValue);
+      }
+      else
+      {
+        throw divide_by_zero("Divide by zero in function cot(a)");
+      };
+    };
   }
 
 } // namespace

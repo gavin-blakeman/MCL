@@ -44,20 +44,19 @@
 #ifndef MCL_STATISTICS_MEAN_HPP
 #define MCL_STATISTICS_MEAN_HPP
 
-// Standard libraries
+  // Standard C++ library header files
 
 #include <cstdint>
+#include <memory>
 #include <optional>
 #include <valarray>
 
-  // MCL Library
+  // MCL Library header files
 
 #include "../config.h"
 
 #ifndef MCL_NOBOOST
     // Boost Library
-
-  #include "boost/scoped_array.hpp"
   #ifndef MCL_NOMT
     #include "boost/thread/thread.hpp"        /* C++17 std::thread does not have a thread group. So easier to still use boost::thread. */
   #endif // MCL_NOMT
@@ -110,11 +109,11 @@ namespace MCL
 #else // MCL_NOMT
 
   /// @brief Thread function called by MCL::mean(valarray) to determine the mean of an array
-  /// @param[in] data - The data to calculate the mean of
-  /// @param[in] indexStart - The starting index in the array
-  /// @param[in] indexEnd - One more than the last index to include in the calculation
-  /// @param[out] mean - The calculated mean
-  /// @param[out] count - The number of samples counted.
+  /// @param[in] data: The data to calculate the mean of
+  /// @param[in] indexStart: The starting index in the array
+  /// @param[in] indexEnd: One more than the last index to include in the calculation
+  /// @param[out] mean: The calculated mean
+  /// @param[out] count: The number of samples counted.
   /// @throws None.
   /// @version 2013-03-11/GGB - Converted to use std::valarray<> as storage type.
   /// @version 2012-11-29/GGB - Function created.
@@ -138,6 +137,7 @@ namespace MCL
   /// @returns The mean of the values in the array.
   /// @throws None.
   /// @note This function is multi-threaded.
+  /// @version 2018-09-20/GGB - Updated to use std::unique_ptr instead of boost scoped arrays.
   /// @version 2015-07-10/GGB - Function created.
 
   template<typename T>
@@ -173,8 +173,8 @@ namespace MCL
 
       stepSize = count / numberOfThreads;
 
-      boost::scoped_array<size_t> counts(new size_t[numberOfThreads]);
-      boost::scoped_array<FP_t> means(new FP_t[numberOfThreads]);
+      std::unique_ptr<size_t []> counts(new size_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> means(new FP_t[numberOfThreads]);
 
         // Spawn the threads.
 

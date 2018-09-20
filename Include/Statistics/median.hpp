@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2017 Gavin Blakeman.
+//                      Copyright 2013-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -30,7 +30,6 @@
 //
 // FUNCTIONS INCLUDED:  median(...)
 //
-//
 // HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
 //                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-07-28 GGB - File Created.
@@ -40,13 +39,15 @@
 #ifndef MCL_MEDIAN_HPP
 #define MCL_MEDIAN_HPP
 
-#include "../config.h"
-#include "../Utility/sort.hpp"
-
-  // Standard template library
+  // Standard C++ library header files
 
 #include <algorithm>
 #include <valarray>
+
+  // MCL Library header files.
+
+#include "../config.h"
+#include "../Utility/sort.hpp"
 
 namespace MCL
 {

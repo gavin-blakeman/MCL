@@ -41,7 +41,7 @@
 #ifndef MCL_TPOINT_H
 #define MCL_TPOINT_H
 
-#include "MCLError.h"
+#include "error.h"
 
 namespace MCL
 {
@@ -54,9 +54,9 @@ namespace MCL
 
   protected:
   public:
-    inline TPoint2D() : xVal(0), yVal(0) {;}
-    inline TPoint2D(T const &newX, T const &newY) : xVal(newX), yVal(newY) {;}
-    inline TPoint2D(TPoint2D const &toCopy) : xVal(toCopy.xVal), yVal(toCopy.yVal) {;}
+    inline TPoint2D() : xVal(0), yVal(0) {}
+    inline TPoint2D(T const &newX, T const &newY) : xVal(newX), yVal(newY) {}
+    inline TPoint2D(TPoint2D const &toCopy) : xVal(toCopy.xVal), yVal(toCopy.yVal) {}
 
     bool operator==(TPoint2D const &rhs) const { return ((xVal == rhs.xVal) && (yVal == rhs.yVal)); }
 
@@ -214,9 +214,10 @@ namespace MCL
     return (*this);
   }
 
-  /// Friend multiplication function.
-  //
-  // 2014-03-07/GGB - Function created.
+  /// @brief Friend multiplication function.
+  /// @param[in] rhs: The value to multiply by.
+  /// @throws None.
+  /// @version 2014-03-07/GGB - Function created.
 
   template<typename T>
   TPoint2D<T> TPoint2D<T>::operator* (double const &rhs) const

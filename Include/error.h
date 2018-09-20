@@ -1,4 +1,4 @@
-//*********************************************************************************************************************************
+﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
 // FILE:								MCLError.h
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2016 Gavin Blakeman.
+//                      Copyright 2011-2018 Gavin Blakeman.
 //                      This file is part of the Math Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General
@@ -44,60 +44,26 @@
 
 #include <stdexcept>
 #include <string>
-#include <map>
 
   // Miscellaneous libraries
 
-//#include <GCL>
+#include "../GCL/include/error.h" //!!! If the full GCL package is included at this point, it creates cicular references and errors.
 
 namespace MCL
 {
-  typedef std::map<size_t, std::string> TErrorStore;
-
   class divide_by_zero : public std::runtime_error
   {
-  public:
+  private:
     divide_by_zero() = delete;
+  public:
     divide_by_zero(std::string const &arg) : std::runtime_error(arg) {}
     divide_by_zero(divide_by_zero const &) = default;
     virtual ~divide_by_zero() = default;
   };
 
-  class CMCLError : public std::runtime_error
-  {
-  private:
-    static TErrorStore errorMessages;
-    size_t errorCode_;
-
-  public:
-    inline explicit CMCLError(size_t newError) : std::runtime_error("MCL Error"), errorCode_(newError) {}
-
-    virtual inline size_t errorCode() const { return errorCode_;}
-    virtual std::string errorMessage() const;
-    virtual void logErrorMessage() const;
-
-    static void loadErrorMessages();
-  };
-
-  class CMCLCodeError : public CMCLError
-  {
-  private:
-    long lineNo;
-    std::string fileName;
-    std::string timeStamp;
-
-  public:
-    inline explicit CMCLCodeError(const std::string newFile, const std::string newTime, long newLine)
-      : CMCLError(0xFFFF), lineNo(newLine), fileName(newFile), timeStamp(newTime) {}
-
-    virtual ~CMCLCodeError() throw() {}
-
-    virtual std::string errorMessage() const;
-    virtual void logErrorMessage() const;
-  };
-
-#define MCL_ERROR(errorNo) (throw(CMCLError(errorNo)))
-#define MCL_CODE_ERROR throw (CMCLCodeError( __FILE__, __TIMESTAMP__, (long) __LINE__) )
+#define MCL_ERROR(errorNo) (ERROR(MCL, errorNo))
+#define MCL_CODE_ERROR CODE_ERROR(MCL)
+#define MCL_RUNTIME_ASSERT(EXPRESSION, MESSAGE) (RUNTIME_ASSERT(MCL, EXPRESSION, MESSAGE))
 
 }	// namespace MCL
 

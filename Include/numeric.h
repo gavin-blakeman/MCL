@@ -1,4 +1,4 @@
-//**********************************************************************************************************************************
+﻿//**********************************************************************************************************************************
 //
 // PROJECT:							MCL (Math Class Library)
 // FILE:								numeric
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2015, 2017 Gavin Blakeman.
+//                      Copyright 2015, 2017-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -34,7 +34,7 @@
 #ifndef NUMERIC_HPP
 #define NUMERIC_HPP
 
-  // Standard libraries
+  // Standard C++ library header files.
 
 #include <cstdint>
 #include <limits>

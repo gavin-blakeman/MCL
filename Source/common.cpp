@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2015-2016 Gavin Blakeman.
+//                      Copyright 2015-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General
@@ -41,13 +41,13 @@
 
 #include "../Include/common.h"
 
-  // Standard libraries
+  // Standard C++ library header files.
 
 #include <iomanip>
 #include <sstream>
 #include <string>
 
-  // Boost Library
+  // Miscelaneous Library header files.
 
 #include <boost/algorithm/string.hpp>
 
@@ -58,12 +58,10 @@ namespace MCL
   unsigned int const MCL_MINORVERSION = 9;              ///< The Minor version number (mm)
   unsigned int const MCL_BUILDNUMBER  = 0x0051;         ///< The build numnber - incremented on each build.
 
-  /// @brief Returns the library version and build number.
-  /// that was used for editing the library.
+  /// @brief Returns the library version and build number that was used for editing the library.
   /// @returns A string with the application name, version, build.
   /// @throws Nothing.
-  //
-  // 2015-06-29/GGB - Function created.
+  /// @version 2015-06-29/GGB - Function created.
 
   std::string getVersionString()
   {

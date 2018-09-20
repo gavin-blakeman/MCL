@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2014-2016 Gavin Blakeman.
+//                      Copyright 2014-2018 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -31,7 +31,8 @@
 // FUNCTIONS INCLUDED:  sum(...)  - Sums the elements of a valarray
 //
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2018-09-20 GGB - Refactoring to use std::uniqu_ptr
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2014-01-13/GGB - Development of function
 //
 //*********************************************************************************************************************************
@@ -39,22 +40,18 @@
 #ifndef MCL_STATISTICS_SUM_HPP
 #define MCL_STATISTICS_SUM_HPP
 
+  // Standard C++ library header files.
+
+#include <cstdint>
+#include <memory>
+#include <valarray>
+
   // MCL Library
 
 #include "../config.h"
 
-// Standard libraries
-
-#include <cstdint>
-#include <valarray>
-
-
 #ifndef MCL_NOBOOST
   // Boost Library
-
-
-#include "boost/optional/optional.hpp"
-#include "boost/scoped_array.hpp"
 #ifndef MCL_NOMT
 #include "boost/thread/thread.hpp"
 #endif // MCL_NOMT
@@ -99,7 +96,9 @@ namespace MCL
     sum = 0;
 
     for(index = indexStart; index < indexEnd; index++)
+    {
       sum += data[index];
+    };
   }
 
   /// @brief Determines the sum of the array
@@ -135,7 +134,7 @@ namespace MCL
 
       stepSize = count / numberOfThreads;
 
-      boost::scoped_array<FP_t> sums(new FP_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> sums(new FP_t[numberOfThreads]);
 
         // Spawn the threads.
 
