@@ -103,22 +103,22 @@
 /// <a href="http://www.gnu.org/licenses/">The GNU Project</a>
 
 
-#include "Include/angle.h"
-#include "Include/config.h"
-#include "Include/constants.h"
-#include "Include/functions.hpp"
-#include "Include/numeric.h"
-#include "Include/trigonometry.hpp"
-#include "Include/TPoint2D.hpp"
-#include "Include/TVector3D.hpp"
+#include "include/angle.h"
+#include "include/config.h"
+#include "include/constants.h"
+#include "include/functions.hpp"
+#include "include/numeric.h"
+#include "include/trigonometry.hpp"
+#include "include/TPoint2D.hpp"
+#include "include/TVector3D.hpp"
 
-#include "Include/Statistics/mean.hpp"
-#include "Include/Statistics/median.hpp"
-#include "Include/Statistics/MinMax.hpp"
-#include "Include/Statistics/stdev.hpp"
-#include "Include/Statistics/sum.hpp"
-#include "Include/Statistics/variance.hpp"
+#include "include/statistics/mean.hpp"
+#include "include/statistics/median.hpp"
+#include "include/statistics/MinMax.hpp"
+#include "include/statistics/stdev.hpp"
+#include "include/statistics/sum.hpp"
+#include "include/statistics/variance.hpp"
 
-#include "Include/Utility/sort.hpp"
+#include "include/utility/sort.hpp"
 
 #endif // MCL_H

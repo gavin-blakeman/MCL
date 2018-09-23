@@ -47,7 +47,7 @@
   // MCL Library header files.
 
 #include "../config.h"
-#include "../Utility/sort.hpp"
+#include "../utility/sort.hpp"
 
 namespace MCL
 {

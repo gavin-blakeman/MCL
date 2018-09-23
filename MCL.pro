@@ -34,29 +34,29 @@ INCLUDEPATH += \
   "../SCL"
 
 SOURCES += \
-    Source/angle.cpp \
-    Source/Shared.cpp \
-    Source/common.cpp \
-    Source/numeric.cpp \
-    Source/error.cpp
+    source/angle.cpp \
+    source/Shared.cpp \
+    source/common.cpp \
+    source/numeric.cpp \
+    source/error.cpp
 
 HEADERS += \
-    Include/TPoint2D.hpp \
-    Include/constants.h \
-    Include/Statistics/variance.hpp \
-    Include/Statistics/stdev.hpp \
-    Include/Statistics/MinMax.hpp \
-    Include/Statistics/mean.hpp \
-    Include/Statistics/median.hpp \
-    Include/Utility/sort.hpp \
+    include/TPoint2D.hpp \
+    include/constants.h \
+    include/statistics/variance.hpp \
+    include/statistics/stdev.hpp \
+    include/statistics/MinMax.hpp \
+    include/statistics/mean.hpp \
+    include/statistics/median.hpp \
+    include/utility/sort.hpp \
     MCL \
-    Include/Statistics/sum.hpp \
-    Include/config.h \
-    Include/common.h \
-    Include/numeric.h \
-    Include/angle.h \
-    Include/functions.hpp \
-    Include/TVector3D.hpp \
-    Include/trigonometry.hpp \
-    Include/error.h
+    include/statistics/sum.hpp \
+    include/config.h \
+    include/common.h \
+    include/numeric.h \
+    include/angle.h \
+    include/functions.hpp \
+    include/TVector3D.hpp \
+    include/trigonometry.hpp \
+    include/error.h
 

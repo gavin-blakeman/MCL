@@ -35,11 +35,11 @@
 //
 //*********************************************************************************************************************************
 
-#include "../Include/angle.h"
+#include "../include/angle.h"
 
   // MCL library header files.
 
-#include "../Include/constants.h"
+#include "../include/constants.h"
 
   // Miscellaneous libraries
 

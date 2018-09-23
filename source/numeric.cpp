@@ -31,11 +31,11 @@
 //
 //**********************************************************************************************************************************
 
-#include "../Include/numeric.h"
+#include "../include/numeric.h"
 
   // MCL Includes
 
-#include "../Include/error.h"
+#include "../include/error.h"
 
   // GCL Header files
 
