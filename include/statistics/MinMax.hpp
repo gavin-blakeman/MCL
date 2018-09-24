@@ -297,12 +297,16 @@ namespace MCL
     min = data[indexStart++];
 
     for(index = indexStart; index < indexEnd; index++)
+    {
       if (data[index] < min)
+      {
         min = data[index];
+      };
+    };
   }
 
   /// @brief Function to determine the minimum value in an array.
-  //
+  /// @param[in] data: The array to search.
   /// @version 2018-09-19/GGB - Use and return std::optional instead of boost::optional.
   /// @version 2013-08-02/GGB - Updated to use valarray const & and T for data.
   /// @version 2012-11-30/GGB - Function created.
@@ -339,7 +343,7 @@ namespace MCL
 
       stepSize = data.size() / numberOfThreads;
 
-      boost::scoped_array<T> mins(new T[numberOfThreads]);
+      std::unique_ptr<T []> mins(new T[numberOfThreads]);
 
         // Spawn the threads.
 
@@ -376,11 +380,15 @@ namespace MCL
   }
 
   /// @brief Thread function to determine the minimum and maximum value in an array.
-  //
-  // 2013-08-02/GGB - 1) Converted to use type T for return values.
-  //                  2) Changed parameter to const &
-  // 2013-03-11/GGB - Converted to use std::valarray<> as storage type.
-  // 2012-11-30/GGB - Function created.
+  /// @param[in] data: The array to operate on.
+  /// @param[in] indexStart: The array index this thread should start operating on.
+  /// @param[in] indexEnd: The array index this thread should end on.
+  /// @param[out] min: The minimum value found.
+  /// @param[out] max: The maximum value found.
+  /// @version 2013-08-02/GGB - 1) Converted to use type T for return values.<br>
+  ///                           2) Changed parameter to const &
+  /// @version 2013-03-11/GGB - Converted to use std::valarray<> as storage type.
+  /// @version 2012-11-30/GGB - Function created.
 
   template<typename T>
   void minmaxThread(T *data, size_t indexStart, size_t indexEnd, T &min, T &max)
@@ -404,8 +412,8 @@ namespace MCL
   }
 
   /// @brief Function to determine the minimum value in an array.
-  /// @param[in] data - The data array
-  /// @param[in] dataCount - The number of elements in the array.
+  /// @param[in] data: The data array
+  /// @param[in] dataCount: The number of elements in the array.
   /// @returns The min and max value of the elements within the array.
   /// @throws None.
   /// @version 2018-09-19/GGB - Use and return std::optional instead of boost::optional.
@@ -445,8 +453,8 @@ namespace MCL
 
       stepSize = dataCount / numberOfThreads;
 
-      boost::scoped_array<T> mins(new T[numberOfThreads]);
-      boost::scoped_array<T> maxs(new T[numberOfThreads]);
+      std::unique_ptr<T []> maxs(new T[numberOfThreads]);
+      std::unique_ptr<T []> mins(new T[numberOfThreads]);
 
         // Spawn the threads.
 
