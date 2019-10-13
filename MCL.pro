@@ -1,14 +1,47 @@
-#-------------------------------------------------
+#**********************************************************************************************************************************
 #
-# Project created by QtCreator 2013-06-16T08:32:14
+# PROJECT:						Math Class Library
+# FILE:               MCL
+# SUBSYSTEM:					Maths class library.
+# LANGUAGE:						C++
+# TARGET OS:					WINDOWS/UNIX/LINUX/MAC
+# LIBRARY DEPENDANCE: None.
+# NAMESPACE:					MCL
+# AUTHOR:							Gavin Blakeman.
+# LICENSE:            GPLv2
 #
-#-------------------------------------------------
+#                     Copyright 2012-2018 Gavin Blakeman.
+#                     This file is part of the Maths Class Library (MCL)
+#
+#                     MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+#                     License as published by the Free Software Foundation, either version 2 of the License, or (at your option)
+#                     any later version.
+#
+#                     MCL is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+#                     warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+#                     more details.
+#
+#                     You should have received a copy of the GNU General Public License along with MCL.  If not, see
+#                     <http://www.gnu.org/licenses/>.
+#
+# OVERVIEW:           The MCL is a collection of mathematics functions for C++. The library uses templates as far as possible.
+#                     All computationally intensive functions are multi-threaded as far as possible.
+#
+# CLASSES INCLUDED:
+#
+#
+# HISTORY:            2015-09-22 GGB - astroManager 2015.09 release
+#                     2014-01-13 GGB - Added file statistics/sum.hpp to the library
+#                     2013-07-28 GGB - Added file statistics/median.hpp and utility/sort.hpp to the library.
+#                     2013-06-16 GGB - File created.
+#
+#*********************************************************************************************************************************
 
 TARGET = MCL
 TEMPLATE = lib
 CONFIG += staticlib
 
-#QT       -= core gui
+QT       -= core gui
 QMAKE_CXXFLAGS += -std=c++17
 
 win32:CONFIG(release, debug|release) {

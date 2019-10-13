@@ -55,8 +55,8 @@ namespace MCL
   //********************************************************************************************************************************
 
   /// @brief Stream insertion function for the class.
-  /// @param[in] out - The output stream.
-  /// @param[in] toOut - The point to send to the stream.
+  /// @param[in] out: The output stream.
+  /// @param[in] toOut: The point to send to the stream.
   /// @returns The output stream.
   /// @throws None.
   /// @version 2013-03-02/GGB - Function created.
@@ -69,7 +69,7 @@ namespace MCL
   }
 
   /// @brief Returns the sine of an angle.
-  /// @param[in] angle - The angle to take the sin of.
+  /// @param[in] angle: The angle to take the sin of.
   /// @returns The sine of the angle.
   /// @throws None.
   /// @version 2017-09-23/GGB - Function created.
@@ -80,7 +80,7 @@ namespace MCL
   }
 
   /// @brief Returns the cosine of an angle.
-  /// @param[in] angle - The angle to take the cos of.
+  /// @param[in] angle: The angle to take the cos of.
   /// @returns The cosine of the angle.
   /// @throws None.
   /// @version 2017-09-23/GGB - Function created.
