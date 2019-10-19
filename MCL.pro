@@ -62,7 +62,6 @@ else:unix:CONFIG(debug, debug|release) {
 }
 
 INCLUDEPATH += \
-  "../boost 1.62" \
   "../GCL" \
   "../SCL"
 

@@ -92,7 +92,7 @@ namespace MCL
 
       // Stringification functions
 
-    virtual std::string A2SD() const {}
+    virtual std::string A2SD() const {return std::string(); }
     virtual std::string A2SHMS() const;
     virtual std::string A2SDMS() const;
 
