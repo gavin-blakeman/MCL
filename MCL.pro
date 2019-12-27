@@ -10,7 +10,7 @@
 # AUTHOR:							Gavin Blakeman.
 # LICENSE:            GPLv2
 #
-#                     Copyright 2012-2018 Gavin Blakeman.
+#                     Copyright 2012-2019 Gavin Blakeman.
 #                     This file is part of the Maths Class Library (MCL)
 #
 #                     MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -63,7 +63,8 @@ else:unix:CONFIG(debug, debug|release) {
 
 INCLUDEPATH += \
   "../GCL" \
-  "../SCL"
+  "../SCL" \
+  "/home/gavin/Documents/Projects/software/Library/Boost/boost_1_71_0"
 
 SOURCES += \
     source/angle.cpp \

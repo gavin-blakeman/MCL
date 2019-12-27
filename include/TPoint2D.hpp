@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.(GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2018 Gavin Blakeman.
+//                      Copyright 2011-2019 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -66,7 +66,7 @@ namespace MCL
     TPoint2D<T> operator*(double const &) const;
 
     /// @brief Division operator
-    /// @param[in] divisor - The divisor to apply.
+    /// @param[in] divisor: The divisor to apply.
     /// @returns The point divided by the divisor.
     /// @version 2011-08-28/GGB - Function created
 
@@ -122,8 +122,8 @@ namespace MCL
     inline friend std::ostream &operator<<(std::ostream &, TPoint2D<U> const &);
 
     /// @brief Operator() for assigning values.
-    /// @param[in] x - x-value
-    /// @param[in] y - y-value
+    /// @param[in] x: x-value
+    /// @param[in] y: y-value
     /// @throws None.
     /// @version 2017-09-23/GGB - Function created.
 
@@ -135,7 +135,7 @@ namespace MCL
   };
 
   /// @brief Subtraction operator.
-  /// @param[in] rhs - The right hand value to add.
+  /// @param[in] rhs: The right hand value to add.
   /// @returns Object representing the added values.
   /// @throws None.
   /// @version 2011-08-28/GGB - Function created
@@ -168,9 +168,9 @@ namespace MCL
     return (*this);
   }
 
-  /// Copy operator for class.
-  //
-  // 2012-01-13/GGB - Function created
+  /// @brief Copy operator for class.
+  /// @throws None.
+  /// @version 2012-01-13/GGB - Function created
 
   template<typename T>
   TPoint2D<T> &TPoint2D<T>::operator=(TPoint2D<T> const &rhs)
@@ -185,8 +185,8 @@ namespace MCL
   }
 
   /// @brief Stream insertion function for the class.
-  /// @param[in] out - The output stream.
-  /// @param[in] toOut - The point to send to the stream.
+  /// @param[in] out: The output stream.
+  /// @param[in] toOut: The point to send to the stream.
   /// @returns The output stream.
   /// @throws None.
   /// @version 2013-03-02/GGB - Function created.
