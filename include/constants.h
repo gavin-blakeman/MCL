@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2018 Gavin Blakeman.
+//                      Copyright 2011-2020 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -29,7 +29,7 @@
 // CLASSES INCLUDED:    None.
 //
 // HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
-//                      2011-07-29   - Development of classes for openAIRS
+//                      2011-07-29 GGB - Development of classes for openAIRS
 //
 //*********************************************************************************************************************************
 
@@ -38,12 +38,15 @@
 
 #include "config.h"
 
+#include <cmath>
+
 namespace MCL
 {
   const FP_t PI         = 3.141592653589793238462643;       // PI
   const FP_t PI_2       = PI * 2;                           // 2 * PI
-  const FP_t D_SQRT2    = 1.414213562373095048801688;       // sqrt(2)
-  const FP_t D_SQRT1_2  = 0.707106781186547524401;          // 1/sqrt(2)
+  FP_t const D_SQRT2    = std::sqrt(2);                     // sqrt(2)
+  FP_t const SQRT3      = std::sqrt(3);
+  FP_t const D_SQRT1_2  = 1/D_SQRT2;                        // 1/sqrt(2)
   FP_t const PI_DIV_2   = PI / 2;                           // PI / 2
 
 
