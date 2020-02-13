@@ -132,7 +132,24 @@ namespace MCL
       xVal = x;
       yVal = y;
     }
-  };
+
+
+    /// @brief Addition with a constant value. Constant value gets added to both members.
+    /// @param[in] rhs: The value to add to the members.
+    /// @throws None.
+    /// @version 2020-02-13/GGB - Function created.
+
+    template<typename U>
+    TPoint2D &operator +=(U rhs)
+    {
+      xVal += static_cast<T>(rhs);
+      yVal += static_cast<T>(rhs);
+
+      return *this;
+    }
+
+  };  // class TPoint2D.
+
 
   /// @brief Subtraction operator.
   /// @param[in] rhs: The right hand value to add.
@@ -201,9 +218,9 @@ namespace MCL
     return out;
   }
 
-  /// Friend multiplication function.
-  //
-  // 2014-03-07/GGB - Function created.
+  /// @brief Friend multiplication function.
+  /// @param[in] rhs: The right hand value.
+  /// @version 2014-03-07/GGB - Function created.
 
   template<typename T>
   TPoint2D<T> TPoint2D<T>::operator*= (double const &rhs)

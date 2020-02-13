@@ -42,7 +42,7 @@
 
 namespace MCL
 {
-  const FP_t PI         = 3.141592653589793238462643;       // PI
+  FP_t const PI         = 3.141592653589793238462643;       // PI
   const FP_t PI_2       = PI * 2;                           // 2 * PI
   FP_t const D_SQRT2    = std::sqrt(2);                     // sqrt(2)
   FP_t const SQRT3      = std::sqrt(3);
