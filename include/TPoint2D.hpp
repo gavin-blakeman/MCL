@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.(GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2019 Gavin Blakeman.
+//                      Copyright 2011-2020 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -59,6 +59,16 @@ namespace MCL
     inline TPoint2D(TPoint2D const &toCopy) : xVal(toCopy.xVal), yVal(toCopy.yVal) {}
 
     bool operator==(TPoint2D const &rhs) const { return ((xVal == rhs.xVal) && (yVal == rhs.yVal)); }
+
+    /// @brief Unitary negative operator
+    /// @returns An instance containing the negative of the point. (-x, -y)
+    /// @throws
+    /// @version 2020-03-01/GGB - Function created.
+
+    virtual TPoint2D operator-() const
+    {
+      return TPoint2D(-xVal, -yVal);
+    }
 
     virtual TPoint2D &operator-=(TPoint2D const &);
 
@@ -134,7 +144,7 @@ namespace MCL
     }
 
 
-    /// @brief Addition with a constant value. Constant value gets added to both members.
+    /// @brief Addition assignment operator with a constant value. Constant value gets added to both members.
     /// @param[in] rhs: The value to add to the members.
     /// @throws None.
     /// @version 2020-02-13/GGB - Function created.
@@ -146,6 +156,19 @@ namespace MCL
       yVal += static_cast<T>(rhs);
 
       return *this;
+    }
+
+    /// @brief Addition operator with a constant value. Constant value gets added to both members.
+    /// @param[in] rhs: The value to add to the members.
+    /// @throws None.
+    /// @version 2020-03-01/GGB - Function created.
+
+    template<typename U>
+    TPoint2D operator+(U rhs)
+    {
+      TPoint2D temp = *this;
+      temp += rhs;
+      return temp;
     }
 
   };  // class TPoint2D.

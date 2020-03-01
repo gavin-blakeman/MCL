@@ -93,3 +93,6 @@ HEADERS += \
     include/trigonometry.hpp \
     include/error.h
 
+DISTFILES += \
+    changelog.txt
+
