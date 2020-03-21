@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2015-2018 Gavin Blakeman.
+//                      Copyright 2015-2020 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General
@@ -31,7 +31,8 @@
 //
 // CLASS HIERARCHY:     CAngle
 //
-// HISTORY:             2015-09-27 GGB - File Created
+// HISTORY:             2020-03-21 GGB - Added negation operator for CAngle
+//                      2015-09-27 GGB - File Created
 //
 //*********************************************************************************************************************************
 
@@ -78,6 +79,7 @@ namespace MCL
 
       // Mathmatical operators
 
+    virtual CAngle operator-() const;
     virtual CAngle &operator+=(CAngle const &);
     virtual CAngle &operator-=(CAngle const &);
     virtual const CAngle operator+(CAngle const &) const;

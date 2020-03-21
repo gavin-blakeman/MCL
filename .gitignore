@@ -5,3 +5,4 @@ Makefile
 /Documentation/html/
 
 *.bak
+*.autosave
