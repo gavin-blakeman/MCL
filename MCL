@@ -112,6 +112,10 @@
 #include "include/TPoint2D.hpp"
 #include "include/TVector3D.hpp"
 
+#include "include/financial/futureValue.hpp"
+
+#include "include/functions/gcd.hpp"
+
 #include "include/statistics/mean.hpp"
 #include "include/statistics/median.hpp"
 #include "include/statistics/MinMax.hpp"

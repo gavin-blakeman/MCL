@@ -91,7 +91,11 @@ HEADERS += \
     include/functions.hpp \
     include/TVector3D.hpp \
     include/trigonometry.hpp \
-    include/error.h
+    include/error.h \
+    include/fraction.hpp \
+    include/financial/futureValue.hpp \
+    include/gcd.hpp \
+    include/functions/gcd.hpp
 
 DISTFILES += \
     changelog.txt

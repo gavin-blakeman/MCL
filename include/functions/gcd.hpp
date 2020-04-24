@@ -1,11 +1,11 @@
 ﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
-// FILE:								futureValue.hpp
-// SUBSYSTEM:						Financial Functions.
+// FILE:								gcd.hpp
+// SUBSYSTEM:						Maths Functions
 // LANGUAGE:						C++
 // TARGET OS:						None.
-// LIBRARY DEPENDANCE:	boost
+// LIBRARY DEPENDANCE:	None.
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
@@ -24,60 +24,67 @@
 //                      You should have received a copy of the GNU General Public License along with MCL.  If not, see
 //                      <http://www.gnu.org/licenses/>.
 //
-// OVERVIEW:            Implementation of templated and multi-threaded financial functions.
+// OVERVIEW:            Implementation of a greatest common divisor function
 //
 // CLASSES INCLUDED:    None
 //
-// FUNCTIONS INCLUDED:
 //
-//
-// HISTORY:             2020-04-18 GGB - File Created
+// HISTORY:             2020-04-24 GGB - File Created
 //
 //*********************************************************************************************************************************
 
-#ifndef MCL_FUTUREVALUE_HPP
-#define MCL_FUTUREVALUE_HPP
+#ifndef GCD_HPP
+#define GCD_HPP
 
-  // Standard C++ library header files
+  // Standard C++ library header files.
 
-#include <cstdint>
-#include <vector>
+#include <stdexcept>
+#include <type_traits>
 
 namespace MCL
 {
-  /// @brief Calculate the future value based on a number of periods and a constant discount rate.
-  /// @param[in] pv: The present value
-  /// @param[in] rate: The discount rate
-  /// @param[in] np: The number of periods.
-  /// @returns The future value.
-  /// @throws
-  /// @version 2020-04-18/GGB - Function created.
+  /// @brief Calculate the GCD using Euclid's algorithm.
+  /// @param[in] a: The first value
+  /// @param[in] b: Second value
+
 
   template<typename T>
-  T FV(T const &pv, double rate, std::uint32_t np)
+  T gcd(T a, T b)
   {
-    return T(pv * (1 + rate) ^ np);
-  }
+    static_assert(std::is_integral<T>::value, "Unsigned Integer type required.");
+    static_assert(std::is_unsigned<T>::value, "Unsigned integer type required.");
 
-  /// @brief Calculate the future value based on a number of periods and a varying discount rate.
-  /// @param[in] pv: The present value
-  /// @param[in[ rates: std::vector containing the discount rates per period.
-  /// @returns The future value.
-  /// @throws
-  /// @version 2020-04-18/GGB - Function created.
-  /// @todo 1. Add multi-threading for large vectors.
-
-  template<typename T, typename R>
-  T FV(T pv, std::vector<R> rates)
-  {
-    for (R const & dr : rates)
+    if ( (a1 == 0) || (b1 == 0))
     {
-      pv *= (1 + dr);
-    };
+      throw std::runtime_error("MCL::gcd - Parameters cannot be zero.");
+    }
+    else
+    {
+      if (a < 0)
+      {
+        a = -a;
+      };
+      if (b < 0)
+      {
+        b = -b;
+      };
 
-    return pv;
+      while (a != b)
+      {
+        if (a > b)
+        {
+          a -= b;
+        }
+        else
+        {
+          b -= a;
+        }
+      };
+
+      return a;
+    };
   }
 
 } // namespace MCL
 
-#endif // MCL_FUTUREVALUE_HPP
+#endif // GCD_HPP
