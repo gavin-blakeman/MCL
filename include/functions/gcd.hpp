@@ -52,9 +52,9 @@ namespace MCL
   T gcd(T a, T b)
   {
     static_assert(std::is_integral<T>::value, "Unsigned Integer type required.");
-    static_assert(std::is_unsigned<T>::value, "Unsigned integer type required.");
+    static_assert(std::is_signed<T>::value, "Signed integer type required.");
 
-    if ( (a1 == 0) || (b1 == 0))
+    if ( (a == 0) || (b == 0))
     {
       throw std::runtime_error("MCL::gcd - Parameters cannot be zero.");
     }

@@ -106,6 +106,7 @@
 #include "include/angle.h"
 #include "include/config.h"
 #include "include/constants.h"
+#include "include/fraction.hpp"
 #include "include/functions.hpp"
 #include "include/numeric.h"
 #include "include/trigonometry.hpp"

@@ -76,7 +76,7 @@ namespace MCL
 
   protected:
   public:
-    CFraction();
+    CFraction() {}
     CFraction(std::int64_t n, std::int64_t d) : numerator_(n), denominator_(d)
     {
       if (d == 0)
@@ -91,6 +91,9 @@ namespace MCL
       normalise();
     }
     CFraction(CFraction const &other) : numerator_(other.numerator_), denominator_(other.denominator_) {}
+
+    std::int64_t &numerator() { return numerator_; }
+    std::int64_t &denominator() { return denominator_; }
 
     operator std::int64_t() { return static_cast<std::int64_t>(numerator_) / static_cast<std::int64_t>(denominator_); }
     operator float() { return static_cast<float>(numerator_) / static_cast<float>(denominator_); }
@@ -162,7 +165,7 @@ namespace MCL
       return temp;
     }
 
-  }
+  };
 }
 
 #endif // FRACTION_HPP
