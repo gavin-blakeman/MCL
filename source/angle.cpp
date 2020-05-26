@@ -5,7 +5,6 @@
 // SUBSYSTEM:						Angle class
 // LANGUAGE:						C++
 // TARGET OS:						None.
-// LIBRARY DEPENDANCE:	None.
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
@@ -40,7 +39,7 @@
 
   // MCL library header files.
 
-#include "../include/constants.h"
+#include "include/constants.h"
 
   // Miscellaneous libraries
 
@@ -215,8 +214,8 @@ namespace MCL
   }
 
   /// @brief Convert an angle in a specified format to radians.
-  /// @param[in] value - The value to convert.
-  /// @param[in] af - The format of the angle.
+  /// @param[in] value: The value to convert.
+  /// @param[in] af: The format of the angle.
   /// @returns The angle in radians.
   /// @throws GCL::CError(MCL, 0x0100)
   /// @throws GCL::CCodeError(MCL)

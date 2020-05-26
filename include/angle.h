@@ -5,7 +5,6 @@
 // SUBSYSTEM:						Angle class
 // LANGUAGE:						C++
 // TARGET OS:						None.
-// LIBRARY DEPENDANCE:	None.
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman (GGB)
 // LICENSE:             GPLv2
@@ -39,14 +38,14 @@
 #ifndef MCL_ANGLE_H
 #define MCL_ANGLE_H
 
+  // Standard C++ libraries
+
+#include <string>
+
   // MCL Library
 
 #include "config.h"
 #include "constants.h"
-
-  // Standard C++ libraries
-
-#include <string>
 
 namespace MCL
 {

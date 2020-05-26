@@ -51,7 +51,7 @@ namespace MCL
   template<typename T>
   T gcd(T a, T b)
   {
-    static_assert(std::is_integral<T>::value, "Unsigned Integer type required.");
+    static_assert(std::is_integral<T>::value, "Signed Integer type required.");
     static_assert(std::is_signed<T>::value, "Signed integer type required.");
 
     if ( (a == 0) || (b == 0))

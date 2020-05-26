@@ -49,7 +49,7 @@
 namespace MCL
 {
 
-  class CFraction
+  class fraction_t
   {
   private:
     std::int64_t numerator_ = 0;
@@ -76,8 +76,8 @@ namespace MCL
 
   protected:
   public:
-    CFraction() {}
-    CFraction(std::int64_t n, std::int64_t d) : numerator_(n), denominator_(d)
+    fraction_t() {}
+    fraction_t(std::int64_t n, std::int64_t d) : numerator_(n), denominator_(d)
     {
       if (d == 0)
       {
@@ -90,7 +90,7 @@ namespace MCL
       };
       normalise();
     }
-    CFraction(CFraction const &other) : numerator_(other.numerator_), denominator_(other.denominator_) {}
+    fraction_t(fraction_t const &other) : numerator_(other.numerator_), denominator_(other.denominator_) {}
 
     std::int64_t &numerator() { return numerator_; }
     std::int64_t &denominator() { return denominator_; }
@@ -99,7 +99,7 @@ namespace MCL
     operator float() { return static_cast<float>(numerator_) / static_cast<float>(denominator_); }
     operator double() { return static_cast<double>(numerator_) / static_cast<double>(denominator_); }
 
-    CFraction &operator+=(CFraction const &rhs)
+    fraction_t &operator+=(fraction_t const &rhs)
     {
        std::int64_t temp = denominator_ * rhs.denominator_;
        numerator_ = numerator_ * rhs.denominator_ + rhs.numerator_ * denominator_;
@@ -109,14 +109,14 @@ namespace MCL
        return *this;
     }
 
-    CFraction operator+(CFraction const &rhs)
+    fraction_t operator+(fraction_t const &rhs)
     {
-      CFraction temp(*this);
+      fraction_t temp(*this);
       temp += rhs;
       return temp;
     }
 
-    CFraction &operator -=(CFraction const &rhs)
+    fraction_t &operator -=(fraction_t const &rhs)
     {
       std::int64_t temp = denominator_ * rhs.denominator_;
       numerator_ = numerator_ * rhs.denominator_ - rhs.numerator_ * denominator_;
@@ -126,14 +126,14 @@ namespace MCL
       return *this;
     }
 
-    CFraction operator-(CFraction const &rhs)
+    fraction_t operator-(fraction_t const &rhs)
     {
-      CFraction temp(*this);
+      fraction_t temp(*this);
       temp -= rhs;
       return temp;
     }
 
-    CFraction &operator*=(CFraction const &rhs)
+    fraction_t &operator*=(fraction_t const &rhs)
     {
       numerator_ *= rhs.numerator_;
       denominator_ *= rhs.denominator_;
@@ -142,14 +142,14 @@ namespace MCL
       return *this;
     }
 
-    CFraction operator*(CFraction const &rhs)
+    fraction_t operator*(fraction_t const &rhs)
     {
-      CFraction temp(*this);
+      fraction_t temp(*this);
       temp *= rhs;
       return temp;
     }
 
-    CFraction &operator/=(CFraction const rhs)
+    fraction_t &operator/=(fraction_t const rhs)
     {
       numerator_ *= rhs.denominator_;
       denominator_ *= rhs.numerator_;
@@ -158,9 +158,9 @@ namespace MCL
       return *this;
     }
 
-    CFraction operator/(CFraction const &rhs)
+    fraction_t operator/(fraction_t const &rhs)
     {
-      CFraction temp(*this);
+      fraction_t temp(*this);
       temp /= rhs;
       return temp;
     }
