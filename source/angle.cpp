@@ -35,7 +35,7 @@
 //
 //*********************************************************************************************************************************
 
-#include "../include/angle.h"
+#include "include/angle.h"
 
   // MCL library header files.
 
@@ -285,7 +285,7 @@ namespace MCL
       };
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
       };
     };
 

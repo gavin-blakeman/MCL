@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2015, 2017-2018 Gavin Blakeman.
+//                      Copyright 2015, 2017-2020 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -31,11 +31,11 @@
 //
 //**********************************************************************************************************************************
 
-#include "../include/numeric.h"
+#include "include/numeric.h"
 
   // MCL Includes
 
-#include "../include/error.h"
+#include "include/error.h"
 
   // GCL Header files
 
@@ -295,7 +295,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -447,7 +447,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -580,7 +580,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -702,7 +702,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -857,7 +857,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -994,7 +994,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -1113,7 +1113,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -1214,7 +1214,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -1298,7 +1298,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
@@ -1371,7 +1371,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR(MCL);
+        CODE_ERROR;
         break;
       };
     }
