@@ -121,12 +121,11 @@ namespace MCL
 
   CAngle CAngle::operator-() const
   {
-
+    return CAngle(angle_ + MCL::PI);
   }
 
-
   /// @brief The += operator for the class.
-  /// @param[in] rhs - Right hand side argument.
+  /// @param[in] rhs: Right hand side argument.
   /// @returns Reference to this instance.
   /// @throws None.
   /// @version 2015-09-27/GGB - Function created.
@@ -139,7 +138,7 @@ namespace MCL
   }
 
   /// @brief The -= operator for the class.
-  /// @param[in] rhs - Right hand side argument.
+  /// @param[in] rhs: Right hand side argument.
   /// @returns Reference to this instance.
   /// @throws None.
   /// @version 2015-09-27/GGB - Function created.
@@ -152,7 +151,7 @@ namespace MCL
   }
 
   /// @brief Addition of two angles.
-  /// @param[in] rhs - The value to add.
+  /// @param[in] rhs: The value to add.
   /// @returns The angle added to the value of the RHS.
   /// @throws None
   /// @version 2016-03-25/GGB - Function created.
@@ -167,7 +166,7 @@ namespace MCL
   }
 
   /// @brief Multiplication by a double.
-  /// @param[in] rhs - The value to multiply by.
+  /// @param[in] rhs: The value to multiply by.
   /// @returns The angle multiplied by the value of the RHS.
   /// @throws None
   /// @version 2016-03-25/GGB - Function created.
@@ -179,7 +178,7 @@ namespace MCL
   }
 
   /// @brief Multiplication by a double.
-  /// @param[in] rhs - The value to multiply by.
+  /// @param[in] rhs: The value to multiply by.
   /// @returns The angle multiplied by the value of the RHS.
   /// @throws None
   /// @version 2016-03-25/GGB - Function created.

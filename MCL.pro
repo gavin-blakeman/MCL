@@ -39,9 +39,10 @@
 
 TARGET = MCL
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += staticlib create_prl
 
 QT       -= core gui
+
 QMAKE_CXXFLAGS += -std=c++17
 
 win32:CONFIG(release, debug|release) {
