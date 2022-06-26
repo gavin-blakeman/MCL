@@ -10,7 +10,7 @@
 # AUTHOR:							Gavin Blakeman.
 # LICENSE:            GPLv2
 #
-#                     Copyright 2012-2019 Gavin Blakeman.
+#                     Copyright 2012-2022 Gavin Blakeman.
 #                     This file is part of the Maths Class Library (MCL)
 #
 #                     MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -43,7 +43,7 @@ CONFIG += staticlib create_prl
 
 QT       -= core gui
 
-QMAKE_CXXFLAGS += -std=c++17
+QMAKE_CXXFLAGS += -std=c++20
 
 DESTDIR = ""
 OBJECTS_DIR = "objects"
