@@ -47,7 +47,7 @@
 
   // Miscellaneous libraries
 
-#include "../GCL/include/error.h" //!!! If the full GCL package is included at this point, it creates cicular references and errors.
+//#include "../GCL/include/error.h" //!!! If the full GCL package is included at this point, it creates cicular references and errors.
 
 namespace MCL
 {
@@ -60,10 +60,6 @@ namespace MCL
     divide_by_zero(divide_by_zero const &) = default;
     virtual ~divide_by_zero() = default;
   };
-
-#define MCL_ERROR(errorNo) (ERROR(MCL, errorNo))
-#define MCL_CODE_ERROR CODE_ERROR(MCL)
-#define MCL_RUNTIME_ASSERT(EXPRESSION, MESSAGE) (RUNTIME_ASSERT(MCL, EXPRESSION, MESSAGE))
 
 }	// namespace MCL
 

@@ -41,7 +41,9 @@
 #ifndef MCL_TPOINT_H
 #define MCL_TPOINT_H
 
-#include "error.h"
+#include "exceptions.h"
+
+#include <GCL>
 
 namespace MCL
 {
@@ -87,7 +89,7 @@ namespace MCL
 
       if (divisor == 0)
       {
-        MCL_ERROR(0x1000);
+        ERRORMESSAGE("NUMERIC: Value out of range.");
       }
       else
       {

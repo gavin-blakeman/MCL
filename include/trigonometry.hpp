@@ -51,7 +51,7 @@
 
   // MCL Library header files.
 
-#include "error.h"
+#include "exceptions.h"
 #include "config.h"
 #include "functions.hpp"
 

@@ -40,6 +40,7 @@
   // MCL library header files.
 
 #include "include/constants.h"
+#include "include/exceptions.h"
 
   // Miscellaneous libraries
 
@@ -228,7 +229,7 @@ namespace MCL
     {
       case AF_NONE:
       {
-        ERROR(MCL, 0x0100);
+        ERRORMESSAGE("NUMERIC: Value out of range.");
         break;
       };
       case AF_Dd:

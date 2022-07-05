@@ -56,12 +56,12 @@ SOURCES += \
     source/angle.cpp \
     source/Shared.cpp \
     source/common.cpp \
-    source/numeric.cpp \
-    source/error.cpp
+    source/numeric.cpp
 
 HEADERS += \
     include/TPoint2D.hpp \
     include/constants.h \
+    include/exceptions.h \
     include/statistics/variance.hpp \
     include/statistics/stdev.hpp \
     include/statistics/MinMax.hpp \
@@ -77,7 +77,6 @@ HEADERS += \
     include/functions.hpp \
     include/TVector3D.hpp \
     include/trigonometry.hpp \
-    include/error.h \
     include/fraction.hpp \
     include/financial/futureValue.hpp \
     include/gcd.hpp \

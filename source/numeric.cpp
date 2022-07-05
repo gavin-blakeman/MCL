@@ -35,7 +35,7 @@
 
   // MCL Includes
 
-#include "include/error.h"
+#include "include/exceptions.h"
 
   // GCL Header files
 
@@ -164,7 +164,7 @@ namespace MCL
       {
         if (value.uint16Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -176,7 +176,7 @@ namespace MCL
       {
         if (value.uint32Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -188,7 +188,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -200,11 +200,11 @@ namespace MCL
       {
         if (value.int8Value < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int8Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -216,11 +216,11 @@ namespace MCL
       {
         if (value.int16Value < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int16Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -232,11 +232,11 @@ namespace MCL
       {
         if (value.int32Value < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int32Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -248,11 +248,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -264,11 +264,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -280,11 +280,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::uint8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::uint8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -328,7 +328,7 @@ namespace MCL
       {
         if (value.uint32Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -340,7 +340,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -352,11 +352,11 @@ namespace MCL
       {
         if (value.int8Value < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int8Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -368,11 +368,11 @@ namespace MCL
       {
         if (value.int16Value < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int16Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -384,11 +384,11 @@ namespace MCL
       {
         if (value.int32Value < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int32Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -400,11 +400,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -416,11 +416,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -432,11 +432,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::uint16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::uint16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -485,7 +485,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::uint32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -497,7 +497,7 @@ namespace MCL
       {
         if (value.int8Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -509,7 +509,7 @@ namespace MCL
       {
         if (value.int16Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -521,7 +521,7 @@ namespace MCL
       {
         if (value.int32Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -533,11 +533,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::uint32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::uint32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -549,11 +549,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::uint32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::uint32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -565,11 +565,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::uint32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::uint32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -623,7 +623,7 @@ namespace MCL
       {
         if (value.int8Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -635,7 +635,7 @@ namespace MCL
       {
         if (value.int16Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -647,7 +647,7 @@ namespace MCL
       {
         if (value.int32Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -659,7 +659,7 @@ namespace MCL
       {
         if (value.int64Value < 0)
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -671,11 +671,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::uint64_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::uint64_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -687,11 +687,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::uint64_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::uint64_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -730,7 +730,7 @@ namespace MCL
       {
         if (value.uint8Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -742,7 +742,7 @@ namespace MCL
       {
         if (value.uint16Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -754,7 +754,7 @@ namespace MCL
       {
         if (value.uint32Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -766,7 +766,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -778,11 +778,11 @@ namespace MCL
       {
         if (value.int16Value < std::numeric_limits<std::int8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int16Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -794,11 +794,11 @@ namespace MCL
       {
         if (value.int32Value < std::numeric_limits<std::int8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int32Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -810,11 +810,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::int8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -826,11 +826,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::int8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -842,11 +842,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::int8_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::int8_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -885,7 +885,7 @@ namespace MCL
       {
         if (value.uint16Value > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -897,7 +897,7 @@ namespace MCL
       {
         if (value.uint32Value > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -909,7 +909,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -931,11 +931,11 @@ namespace MCL
       {
         if (value.int32Value < std::numeric_limits<std::int16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int32Value > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -947,11 +947,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::int16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -963,11 +963,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::int16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -979,11 +979,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::int16_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::int16_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1027,7 +1027,7 @@ namespace MCL
       {
         if (value.uint32Value > std::numeric_limits<std::int32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1039,7 +1039,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::int32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1066,11 +1066,11 @@ namespace MCL
       {
         if (value.int64Value < std::numeric_limits<std::int32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.int64Value > std::numeric_limits<std::int32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1082,11 +1082,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::int32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::int32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1098,11 +1098,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::int32_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::int32_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1151,7 +1151,7 @@ namespace MCL
       {
         if (value.uint64Value > std::numeric_limits<std::int64_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1183,11 +1183,11 @@ namespace MCL
       {
         if (value.floatValue < std::numeric_limits<std::int64_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.floatValue > std::numeric_limits<std::int64_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1199,11 +1199,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<std::int64_t>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<std::int64_t>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
@@ -1283,11 +1283,11 @@ namespace MCL
       {
         if (value.doubleValue < std::numeric_limits<float>::min())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else if (value.doubleValue > std::numeric_limits<float>::max())
         {
-          MCL_ERROR(0x1000);
+          ERRORMESSAGE("NUMERIC: Value out of range.");
         }
         else
         {
