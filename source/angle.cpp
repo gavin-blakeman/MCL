@@ -285,7 +285,7 @@ namespace MCL
       };
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
       };
     };
 

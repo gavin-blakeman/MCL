@@ -295,7 +295,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -447,7 +447,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -580,7 +580,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -702,7 +702,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -857,7 +857,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -994,7 +994,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -1113,7 +1113,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -1214,7 +1214,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -1298,7 +1298,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
@@ -1371,7 +1371,7 @@ namespace MCL
       case NT_none:
       default:
       {
-        CODE_ERROR;
+        CODE_ERROR();
         break;
       };
     }
