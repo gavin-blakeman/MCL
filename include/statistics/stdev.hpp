@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2018 Gavin Blakeman.
+//                      Copyright 2013-2022 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -46,6 +46,7 @@
 
 #include <cstdint>
 #include <optional>
+#include <thread>
 #include <valarray>
 
   // MCL Library
@@ -108,11 +109,9 @@ namespace MCL
   /// @version 2013-03-21/GGB - Function created.
 
   template<typename T>
-  std::optional<FP_t> stdev(std::valarray<T> const &data)
+  FP_t stdev(std::valarray<T> const &data)
   {
-    std::optional<FP_t> returnValue(sqrt(*variance(data)));
-
-    return returnValue;
+    return sqrt(variance(data));
   }
 
   /// @brief Calculates the stdev of the data using the multi-threaded variance.

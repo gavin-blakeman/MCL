@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2018 Gavin Blakeman.
+//                      Copyright 2013-2022 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -48,7 +48,9 @@
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include <thread>
 #include <valarray>
+#include <vector>
 
   // MCL Library
 
@@ -109,6 +111,30 @@ namespace MCL
 
   template<typename T>
   void varianceThread(T *data, size_t indexStart, size_t indexEnd, FP_t &mean, FP_t &M2, size_t &count)
+  {
+    size_t index;
+
+    FP_t delta;
+
+    count = 0;
+    M2 = 0;
+    mean = 0;
+
+    for(index = indexStart; index < indexEnd; index++)
+    {
+      ++count;
+      delta = data[index] - mean;
+      mean += delta / count;
+      M2 += delta * (data[index] - mean);
+    };
+  }
+
+  /// @brief Variance function called by MCL::variance(...) to determine the variance of a valarray
+  /// @param[in] data:
+  /// @version 2013-03-21/GGB - Function created.
+
+  template<typename T>
+  void varianceThreadVA(std::valarray<T> const &data, size_t indexStart, size_t indexEnd, FP_t &mean, FP_t &M2, size_t &count)
   {
     size_t index;
 
@@ -226,6 +252,97 @@ namespace MCL
       };
 
       return std::optional<FP_t>(variance);
+    };
+  }
+
+  /// @brief Multi-threaded function to calculate the variance of a valarray
+  /// @param[in] data: The valarray
+  /// @throws
+  /// @version 2022-11-29/GGB - Function created.
+
+  template<typename T>
+  FP_t variance(std::valarray<T> const &va)
+  {
+    size_t numberOfThreads;
+    size_t threadNumber;
+    size_t stepSize;
+    std::vector<std::thread *> threadGroup;
+    std::thread *thread;
+    size_t indexBegin, indexEnd = 0;
+    size_t index;
+
+    if (va.size() <= 1)
+    {
+      return 0;
+    }
+    else
+    {
+       // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values
+
+      numberOfThreads = std::max(std::min(size_t {1}, va.size() / 1000), maxThreads);
+
+      stepSize = va.size() / numberOfThreads;
+
+      std::unique_ptr<size_t []> counts(new size_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> means(new FP_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> M2s(new FP_t[numberOfThreads]);
+
+        // Spawn the threads to calculate the variance of each thread.
+
+      for (threadNumber = 0; threadNumber < numberOfThreads; threadNumber++)
+      {
+        indexBegin = indexEnd;
+        if (threadNumber == (numberOfThreads -1) )
+        {
+          indexEnd = va.size();
+        }
+        else
+        {
+          indexEnd += stepSize;
+        };
+
+        thread = new std::thread(&varianceThreadVA<T>, boost::cref(va), indexBegin, indexEnd,
+                                   boost::ref(means[threadNumber]), boost::ref(M2s[threadNumber]),
+                                   boost::ref(counts[threadNumber]));
+        threadGroup.push_back(thread);
+        thread = nullptr;
+      };
+
+      for (auto &thread : threadGroup)
+      {
+        thread->join();
+      }
+
+        // Now calculate the variance from the variances.
+
+      FP_t count = 0;
+      FP_t variance = 0;
+      FP_t delta = 0;
+      FP_t mean = 0;
+      FP_t M2;
+
+      if (numberOfThreads == 1)
+      {
+        variance = M2s[0] / (counts[0] - 1);
+      }
+      else
+      {
+        M2 = M2s[0];
+        mean = means[0];
+        count = counts[0];
+
+        for(index = 1; index < numberOfThreads; index++)
+        {
+          delta = means[index] - mean;
+          mean = (count * mean + counts[index] * means[index]) / (count + counts[index]);
+          M2 = M2 + M2s[index] + pow2(delta) * count * counts[index] / (count + counts[index]);
+          count += counts[index];
+        };
+
+        variance = M2 / (count - 1);
+      };
+
+      return variance;
     };
   }
 

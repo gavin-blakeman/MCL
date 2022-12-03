@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2018 Gavin Blakeman.
+//                      Copyright 2013-2022 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -53,7 +53,7 @@ namespace MCL
 {
 
   /// @brief Returns the median value of the data in the array.
-  /// @param[in] data - The array to analyse for the median.
+  /// @param[in] data:  The array to analyse for the median.
   /// @version 2016-01-15/GGB - Use static_cast rather than C-style casting.
   /// @version 2013-07-28/GGB - Function created.
 

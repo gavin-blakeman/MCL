@@ -119,7 +119,8 @@
 
 #include "include/statistics/mean.hpp"
 #include "include/statistics/median.hpp"
-#include "include/statistics/MinMax.hpp"
+#include "include/statistics/minmax.hpp"
+#include "include/statistics/percentile.hpp"
 #include "include/statistics/stdev.hpp"
 #include "include/statistics/sum.hpp"
 #include "include/statistics/variance.hpp"

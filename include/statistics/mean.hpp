@@ -46,10 +46,13 @@
 
   // Standard C++ library header files
 
+#include <algorithm>
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include <thread>
 #include <valarray>
+#include <vector>
 
   // MCL Library header files
 
@@ -108,7 +111,7 @@ namespace MCL
   }
 #else // MCL_NOMT
 
-  /// @brief Thread function called by MCL::mean(valarray) to determine the mean of an array
+  /// @brief Thread function called by MCL::mean to determine the mean of an array
   /// @param[in] data: The data to calculate the mean of
   /// @param[in] indexStart: The starting index in the array
   /// @param[in] indexEnd: One more than the last index to include in the calculation
@@ -130,6 +133,30 @@ namespace MCL
       mean += (data[index] - mean) / (++count);
     };
   }
+
+  /// @brief Thread function called by MCL::mean(valarray) to determine the mean of an array
+  /// @param[in] data: The data to calculate the mean of
+  /// @param[in] indexStart: The starting index in the array
+  /// @param[in] indexEnd: One more than the last index to include in the calculation
+  /// @param[out] mean: The calculated mean
+  /// @param[out] count: The number of samples counted.
+  /// @throws None.
+  /// @version 2022-11-29/GGB - Function created.
+
+  template<typename T>
+  void meanThreadVA(std::valarray<T> &data, size_t indexStart, size_t indexEnd, FP_t &mean, size_t &count)
+  {
+    size_t index;
+    mean = 0;
+    count = 0;
+
+    for(index = indexStart; index < indexEnd; index++)
+    {
+      mean += (data[index] - mean) / (++count);
+    };
+  }
+
+
 
   /// @brief Calculate the mean of a c-style array of data.
   /// @param[in] data: The data array
@@ -204,6 +231,73 @@ namespace MCL
 
       return std::optional<FP_t>(returnValue);
     };
+  }
+
+  /// @brief Calculate the mean of a valarray
+  /// @param[in] data: The data array
+  /// @returns The mean of the values in the array.
+  /// @throws None.
+  /// @note This function is multi-threaded.
+  /// @version 2022-11-29/GGB - Function created.
+
+  template<typename T>
+  FP_t mean(std::valarray<T> &va)
+  {
+    size_t numberOfThreads;
+    size_t threadNumber;
+    size_t stepSize;
+    std::vector<std::thread *> threadGroup;
+    std::thread *thread;
+    size_t indexBegin = 0, indexEnd = 0;
+    size_t index;
+    FP_t returnValue = 0;
+
+    if (va.size() != 0)
+    {
+       // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values
+
+      numberOfThreads = std::min(std::max(std::size_t {1}, va.size() / 1000), maxThreads);
+
+      stepSize = va.size() / numberOfThreads;
+
+      std::unique_ptr<size_t []> counts(new size_t[numberOfThreads]);
+      std::unique_ptr<FP_t []> means(new FP_t[numberOfThreads]);
+
+        // Spawn the threads.
+
+      for (threadNumber = 0; threadNumber < numberOfThreads; threadNumber++)
+      {
+        indexBegin = indexEnd;
+        if (threadNumber == (numberOfThreads - 1) )
+        {
+          indexEnd = va.size();
+        }
+        else
+        {
+          indexEnd += stepSize;
+        };
+        thread = new std::thread(&meanThreadVA<T>, boost::ref(va), indexBegin, indexEnd,
+                                 boost::ref(means[threadNumber]), boost::ref(counts[threadNumber]));
+        threadGroup.push_back(thread);
+        thread = nullptr;
+      };
+
+      for (auto &thread: threadGroup)
+      {
+        thread->join();
+      };
+
+      for(index = 0; index < numberOfThreads; index++)
+      {
+        returnValue += means[index] * counts[index] / va.size();
+      };
+
+      return returnValue;
+    }
+    else
+    {
+      return 0;
+    }
   }
 
 #endif  // MCL_NOMT

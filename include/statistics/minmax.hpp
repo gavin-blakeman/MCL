@@ -1,7 +1,7 @@
 ﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
-// FILE:								Mean.hpp
+// FILE:								minmax.hpp
 // SUBSYSTEM:						Statistics Functions.
 // LANGUAGE:						C++
 // TARGET OS:						WINDOWS/UNIX/LINUX/MAC
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2018 Gavin Blakeman.
+//                      Copyright 2012-2022 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -46,10 +46,14 @@
 
   // Standard C++ library header files.
 
+#include <algorithm>
 #include <cstdint>
 #include <memory>
 #include <optional>
+#include <thread>
 #include <tuple>
+#include <valarray>
+#include <vector>
 
   // MCL Library
 
@@ -411,6 +415,31 @@ namespace MCL
     };
   }
 
+  /// @brief Thread function to determine the minimum and maximum value in a valarray.
+  /// @param[in] data: The array to operate on.
+  /// @param[in] indexStart: The array index this thread should start operating on.
+  /// @param[in] indexEnd: The array index this thread should end on.
+  /// @param[out] min: The minimum value found.
+  /// @param[out] max: The maximum value found.
+  /// @version 2013-08-02/GGB - 1) Converted to use type T for return values.<br>
+  ///                           2) Changed parameter to const &
+  /// @version 2013-03-11/GGB - Converted to use std::valarray<> as storage type.
+  /// @version 2012-11-30/GGB - Function created.
+
+  template<typename T>
+  void minmaxThreadva(std::valarray<T> const &data, size_t indexStart, size_t indexEnd, T &min, T &max)
+  {
+    size_t index;
+
+    max = min = data[indexStart];
+
+    for(index = indexStart + 1; index < indexEnd; index++)
+    {
+      min = std::min(min, data[index]);
+      max = std::max(max, data[index]);
+    };
+  }
+
   /// @brief Function to determine the minimum value in an array.
   /// @param[in] data: The data array
   /// @param[in] dataCount: The number of elements in the array.
@@ -494,6 +523,77 @@ namespace MCL
       };
 
       return std::optional<std::tuple<T, T> >(std::tuple<T, T>(min, max));
+    };
+  }
+
+  /// @brief Function to determine the maximum and minimum values in a valarray.
+  /// @param[in] va: The data array
+  /// @returns The min and max value of the elements within the array.
+  /// @throws None.
+  /// @version 2022-11-29/GGB - Function created.
+
+  template<typename T>
+  std::pair<T, T> minmax(std::valarray<T> const &va)
+  {
+    size_t numberOfThreads;
+    size_t threadNumber;
+    size_t stepSize;
+    std::vector<std::thread *> threadGroup;
+    std::thread *thread;
+    size_t indexBegin, indexEnd = 0;
+    size_t index;
+    T max = 0;
+    T min = 0;
+
+    if (va.size() == 0)
+    {
+      return std::make_pair(T{0}, T{0});
+    }
+    else
+    {
+       // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values.
+
+      numberOfThreads = std::min(std::max(std::size_t{1}, va.size() / 1000), maxThreads);
+
+      stepSize = va.size() / numberOfThreads;
+
+      std::unique_ptr<T []> maxs(new T[numberOfThreads]);
+      std::unique_ptr<T []> mins(new T[numberOfThreads]);
+
+        // Spawn the threads.
+
+      for (threadNumber = 0; threadNumber < numberOfThreads; threadNumber++)
+      {
+        indexBegin = indexEnd;
+        if (threadNumber == (numberOfThreads -1) )
+        {
+          indexEnd = va.size();
+        }
+        else
+        {
+          indexEnd += stepSize;
+        };
+        thread = new std::thread(&minmaxThreadva<T>, boost::cref(va), indexBegin, indexEnd,
+                                   boost::ref(mins[threadNumber]), boost::ref(maxs[threadNumber]));
+        threadGroup.push_back(thread);
+        thread = nullptr;
+      };
+
+      for (auto &thread: threadGroup)
+      {
+        thread->join();
+      }
+
+      min = mins[0];
+      max = maxs[0];
+
+      for(index = 1; index < numberOfThreads; index++)
+      {
+        min = std::min(min, mins[index]);
+        max = std::max(max, maxs[index]);
+      };
+
+      return std::make_pair(min, max);
     };
   }
 #endif // MCL_NOBOOST

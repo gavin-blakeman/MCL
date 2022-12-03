@@ -62,9 +62,10 @@ HEADERS += \
     include/TPoint2D.hpp \
     include/constants.h \
     include/exceptions.h \
+    include/statistics/minmax.hpp \
+    include/statistics/percentile.hpp \
     include/statistics/variance.hpp \
     include/statistics/stdev.hpp \
-    include/statistics/MinMax.hpp \
     include/statistics/mean.hpp \
     include/statistics/median.hpp \
     include/utility/sort.hpp \
