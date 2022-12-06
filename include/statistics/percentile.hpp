@@ -26,9 +26,10 @@ namespace MCL
 
     if (va.size() > 1)
     {
-      s = p * (va.size() +1) / 100;
+      s = p * (va.size() - 1) / 100;
 
       std::sort(std::begin(va), std::end(va));
+
     };
 
     return va[s];

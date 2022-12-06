@@ -117,6 +117,7 @@
 
 #include "include/functions/gcd.hpp"
 
+#include "include/statistics/exponential.hpp"
 #include "include/statistics/mean.hpp"
 #include "include/statistics/median.hpp"
 #include "include/statistics/minmax.hpp"
