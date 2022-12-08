@@ -4,8 +4,10 @@
   // Standard C++ library
 
 #include <algorithm>
+#include <cmath>
 #include <valarray>
 
+#include "../config.h"
 
 namespace MCL
 {
@@ -22,17 +24,41 @@ namespace MCL
   template<typename T, typename U>
   T percentile(std::valarray<T> va, U p)
   {
-    std::size_t s = 0;
-
-    if (va.size() > 1)
+    if (p == 0)
     {
-      s = p * (va.size() - 1) / 100;
+      return 0;
+    }
+    else if (va.size() == 0)
+    {
+      return 0;
+    }
+    else
+    {
+      std::size_t s1 = 0;
+      std::size_t s2 = 0;
 
       std::sort(std::begin(va), std::end(va));
 
-    };
+      FP_t d = (static_cast<FP_t>(p) / 100.0f) * static_cast<FP_t>(va.size() + 1);
+      s1 = static_cast<std::size_t>(std::floor(d)) - 1;
+      s2 = static_cast<std::size_t>(std::ceil(d)) - 1;
 
-    return va[s];
+      s1 = std::min(s1, va.size() - 1);
+      s2 = std::min(s2, va.size() - 1);
+
+      if (s1 == s2)
+      {
+        return va[s1];
+      }
+      else
+      {
+        d -= std::floor(d);
+        d *= (va[s2] - va[s1]);
+        return va[s1] + d;
+      }
+
+
+    };
   }
 
 
