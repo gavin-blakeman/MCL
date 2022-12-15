@@ -41,8 +41,6 @@ TARGET = MCL
 TEMPLATE = lib
 CONFIG += staticlib create_prl
 
-QT       -= core gui
-
 QMAKE_CXXFLAGS += -std=c++20
 
 DESTDIR = ""
@@ -62,7 +60,6 @@ HEADERS += \
     include/TPoint2D.hpp \
     include/constants.h \
     include/exceptions.h \
-    include/statistics/exponential.hpp \
     include/statistics/minmax.hpp \
     include/statistics/percentile.hpp \
     include/statistics/variance.hpp \
