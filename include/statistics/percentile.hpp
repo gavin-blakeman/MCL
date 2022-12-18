@@ -17,12 +17,12 @@ namespace MCL
   ///          percentile extracted.
   /// @note 2. See also the median and mode functions. That also require to valarray to be sorted.
   /// @param[in] va: The valarray to find the percentile.
-  /// @param[in] p: The percentile to find. (10 = 10%)
+  /// @param[in] p: The percentile to find. [0; 100]
   /// @throws
   /// @version 2022-12-02/GGB - Function created.
 
   template<typename T, typename U>
-  T percentile(std::valarray<T> va, U p)
+  FP_t percentile(std::valarray<T> va, U p)
   {
     if (p == 0)
     {
@@ -39,7 +39,7 @@ namespace MCL
 
       std::sort(std::begin(va), std::end(va));
 
-      FP_t d = (static_cast<FP_t>(p) / 100.0f) * static_cast<FP_t>(va.size() + 1);
+      FP_t d = static_cast<FP_t>(p) * static_cast<FP_t>(va.size() + 1);
       s1 = static_cast<std::size_t>(std::floor(d)) - 1;
       s2 = static_cast<std::size_t>(std::ceil(d)) - 1;
 
@@ -56,8 +56,6 @@ namespace MCL
         d *= (va[s2] - va[s1]);
         return va[s1] + d;
       }
-
-
     };
   }
 

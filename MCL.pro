@@ -54,12 +54,22 @@ SOURCES += \
     source/angle.cpp \
     source/Shared.cpp \
     source/common.cpp \
-    source/numeric.cpp
+    source/numeric.cpp \
+    test/functions/linearRegression.cpp \
+    test/main.cpp \
+    test/statistics/distributionFunctions/weibull_test.cpp \
+    test/statistics/mean_test.cpp \
+    test/statistics/median_test.cpp \
+    test/statistics/percentile_test.cpp
 
 HEADERS += \
     include/TPoint2D.hpp \
     include/constants.h \
     include/exceptions.h \
+    include/functions/linearRegression.hpp \
+    include/statistics/distributionFunctions/chi-square.h \
+    include/statistics/distributionFunctions/weibull.hpp \
+    include/statistics/kolmogorov-smirnov.hpp \
     include/statistics/minmax.hpp \
     include/statistics/percentile.hpp \
     include/statistics/variance.hpp \
@@ -82,5 +92,6 @@ HEADERS += \
     include/functions/gcd.hpp
 
 DISTFILES += \
-    changelog.txt
+    changelog.txt \
+    test/CMakeLists.txt
 

@@ -6,3 +6,15 @@ Makefile
 
 *.bak
 *.autosave
+
+build/
+
+cmake_install.cmake
+
+*.cmake
+
+*.make
+
+CMakeFiles/MCL.dir/
+
+CMakeFiles/

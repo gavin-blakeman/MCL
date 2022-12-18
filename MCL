@@ -107,6 +107,7 @@
 #include "include/config.h"
 #include "include/constants.h"
 #include "include/fraction.hpp"
+
 #include "include/functions.hpp"
 #include "include/numeric.h"
 #include "include/trigonometry.hpp"
@@ -116,7 +117,9 @@
 #include "include/financial/futureValue.hpp"
 
 #include "include/functions/gcd.hpp"
+#include "include/functions/linearRegression.hpp"
 
+#include "include/statistics/distributionFunctions/weibull.hpp"
 #include "include/statistics/mean.hpp"
 #include "include/statistics/median.hpp"
 #include "include/statistics/minmax.hpp"
