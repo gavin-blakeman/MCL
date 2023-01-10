@@ -263,6 +263,7 @@ namespace MCL
   template<typename T>
   FP_t variance(std::valarray<T> const &va)
   {
+    FP_t rv = 0;
     size_t numberOfThreads;
     size_t threadNumber;
     size_t stepSize;
@@ -271,15 +272,11 @@ namespace MCL
     size_t indexBegin, indexEnd = 0;
     size_t index;
 
-    if (va.size() <= 1)
-    {
-      return 0;
-    }
-    else
+    if (va.size() > 1)
     {
        // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values
 
-      numberOfThreads = std::max(std::min(size_t {1}, va.size() / 1000), maxThreads);
+      numberOfThreads = std::min(std::max(size_t {1}, va.size() / 1000), maxThreads);
 
       stepSize = va.size() / numberOfThreads;
 
@@ -292,7 +289,7 @@ namespace MCL
       for (threadNumber = 0; threadNumber < numberOfThreads; threadNumber++)
       {
         indexBegin = indexEnd;
-        if (threadNumber == (numberOfThreads -1) )
+        if (threadNumber == (numberOfThreads - 1) )
         {
           indexEnd = va.size();
         }
@@ -301,9 +298,9 @@ namespace MCL
           indexEnd += stepSize;
         };
 
-        thread = new std::thread(&varianceThreadVA<T>, boost::cref(va), indexBegin, indexEnd,
-                                   boost::ref(means[threadNumber]), boost::ref(M2s[threadNumber]),
-                                   boost::ref(counts[threadNumber]));
+        thread = new std::thread(&varianceThreadVA<T>, std::cref(va), indexBegin, indexEnd,
+                                   std::ref(means[threadNumber]), std::ref(M2s[threadNumber]),
+                                   std::ref(counts[threadNumber]));
         threadGroup.push_back(thread);
         thread = nullptr;
       };
@@ -342,8 +339,10 @@ namespace MCL
         variance = M2 / (count - 1);
       };
 
-      return variance;
+      rv = variance;
     };
+
+    return rv;
   }
 
 #endif

@@ -45,6 +45,7 @@
   // Standard libraries
 
 #include <cstdint>
+#include <cmath>
 #include <optional>
 #include <thread>
 #include <valarray>
@@ -111,7 +112,7 @@ namespace MCL
   template<typename T>
   FP_t stdev(std::valarray<T> const &data)
   {
-    return sqrt(variance(data));
+    return std::sqrt(variance(data));
   }
 
   /// @brief Calculates the stdev of the data using the multi-threaded variance.

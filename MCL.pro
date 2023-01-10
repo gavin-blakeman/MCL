@@ -57,16 +57,21 @@ SOURCES += \
     source/numeric.cpp \
     test/functions/linearRegression.cpp \
     test/main.cpp \
+    test/statistics/anderson-darling_test.cpp \
     test/statistics/distributionFunctions/weibull_test.cpp \
     test/statistics/mean_test.cpp \
     test/statistics/median_test.cpp \
-    test/statistics/percentile_test.cpp
+    test/statistics/percentile_test.cpp \
+    test/statistics/stdev_test.cpp \
+    test/statistics/sum_test.cpp
 
 HEADERS += \
     include/TPoint2D.hpp \
     include/constants.h \
+    include/definitions.h \
     include/exceptions.h \
     include/functions/linearRegression.hpp \
+    include/statistics/anderson-darling.hpp \
     include/statistics/distributionFunctions/chi-square.h \
     include/statistics/distributionFunctions/weibull.hpp \
     include/statistics/kolmogorov-smirnov.hpp \
