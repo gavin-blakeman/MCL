@@ -239,16 +239,9 @@ namespace MCL
     {
        // Ensure that we are using a reasonable number of threads. Maximise the number of threads to the number of values.
 
-      numberOfThreads = data.count() / 1000;
+      numberOfThreads = data.size() / 1000;
 
-      if (numberOfThreads == 0)
-      {
-        numberOfThreads = 1;
-      }
-      else if (numberOfThreads > maxThreads)
-      {
-        numberOfThreads = maxThreads;
-      }
+      numberOfThreads = std::max(maxThreads, std::min(numberOfThreads, std::size_t{1}));
 
       stepSize = data.size() / numberOfThreads;
 
