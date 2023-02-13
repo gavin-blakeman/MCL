@@ -18,3 +18,7 @@ cmake_install.cmake
 CMakeFiles/MCL.dir/
 
 CMakeFiles/
+
+*.a
+
+MCL_testSuite
