@@ -73,7 +73,7 @@ HEADERS += \
     include/constants.h \
     include/definitions.h \
     include/exceptions.h \
-    include/financial/xirr.hpp \
+    include/financial/xirr.h \
     include/functions/linearRegression.hpp \
     include/statistics/anderson-darling.hpp \
     include/statistics/distributionFunctions/chi-square.h \

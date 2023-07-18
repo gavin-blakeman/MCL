@@ -5,11 +5,11 @@
 
 #include <vector>
 
-#include "include/financial/xirr.hpp"
+#include "include/financial/xirr.h"
 
 BOOST_AUTO_TEST_SUITE(financial_xirr)
 
-BOOST_AUTO_TEST_CASE(vector, *boost::unit_test::tolerance(0.001))
+BOOST_AUTO_TEST_CASE(Case1, *boost::unit_test::tolerance(0.001))
 {
   using namespace MCL;
 
@@ -37,13 +37,21 @@ BOOST_AUTO_TEST_CASE(vector, *boost::unit_test::tolerance(0.001))
 
 }
 
-//BOOST_AUTO_TEST_CASE(c_array, *boost::unit_test::tolerance(0.001))
-//{
-////  std::vector<double> X = {1.47, 1.50, 1.52, 1.55, 1.57, 1.60, 1.63, 1.65, 1.68, 1.70, 1.73, 1.75,1.78,  1.80, 1.83};
-////  std::vector<double> Y = {52.21, 53.12, 54.48, 55.84, 57.20, 58.57, 59.93, 61.29, 63.11, 64.47, 66.28, 68.10, 69.92, 72.19, 74.46};
+BOOST_AUTO_TEST_CASE(Case2, *boost::unit_test::tolerance(0.001))
+{
+  using namespace MCL;
 
-////  BOOST_TEST(*MCL::mean(X.data(), X.size()) == 1.650);
-////  BOOST_TEST(*MCL::mean(Y.data(), Y.size()) == 62.078);
-//}
+  cashflowVector_t cashflows =
+  {
+    {std::chrono::January/1/2008, -10000},
+    {std::chrono::March/1/2008, 2750},
+    {std::chrono::October/30/2008, 4250},
+    {std::chrono::February/15/2009, 3250},
+    {std::chrono::April/1/2009, 2750},
+  };
+
+  BOOST_TEST(XIRR(cashflows) == 0.3733625);
+
+}
 
 BOOST_AUTO_TEST_SUITE_END()

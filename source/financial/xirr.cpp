@@ -1,6 +1,7 @@
-﻿#include "include/financial/xirr.hpp"
+﻿#include "include/financial/xirr.h"
 
 #include <cmath>
+#include <iostream>
 
 namespace MCL
 {
@@ -14,7 +15,7 @@ namespace MCL
 
     for (i = 0; i < cashflows.size(); i++)
     {
-      rv += cashflows[i].second / std::pow(rate, diffDates[i]/365);
+      rv += cashflows[i].second * std::pow(rate, diffDates[i]);
     }
 
     return rv;
@@ -37,7 +38,7 @@ namespace MCL
 
     for (auto const &cf: cashflows)
     {
-      diffDates.push_back(std::chrono::duration_cast<std::chrono::days>(cashflows.back().first - cf.first).count() / 365);
+      diffDates.push_back((double) std::chrono::duration_cast<std::chrono::days>(cashflows.back().first - cf.first).count() / 365);
 
       if (cf.second > 0)
       {
@@ -64,13 +65,25 @@ namespace MCL
       throw std::runtime_error("MCL::XIRR() - All cashflows zero.");
     };
 
-    double rMin = -1;
+    double rMin = -(1 - prec);
     double rMax = 10;
+    double rMid;
     double fMin = solver(cashflows, diffDates, rMin);
     double fMax = solver(cashflows, diffDates, rMax);
-    double error = (fMax - fMin) / 2;
+    double fMid;
 
-    while (std::abs(error) > prec)
+    if (std::abs(fMax) > std::abs(fMin))
+    {
+      fMid = fMin;
+      rMid = rMin;
+    }
+    else
+    {
+      fMid = fMax;
+      rMid = rMax;
+    }
+
+    while (std::abs(fMid) > prec)
     {
       if (std::signbit(fMin) == std::signbit(fMax))
       {
@@ -78,22 +91,26 @@ namespace MCL
       }
       else
       {
-        if (std::signbit(fMin) == std::signbit(error))
-        {
-          rMin = (rMax - rMin) / 2;
-          fMin = solver(cashflows, diffDates, rMin);
-        }
-        else
-        {
-          rMax = (rMax - rMin) / 2;
-          fMax = solver(cashflows, diffDates, rMax);
-        }
-        error = (fMax - fMin) / 2;
-      }
+        rMid = (rMax + rMin) / 2;
+        fMid = solver(cashflows, diffDates, rMid);
 
+        if (std::abs(fMid) > prec)
+        {
+          if (std::signbit(fMin) == std::signbit(fMid))
+          {
+            rMin = rMid;
+            fMin = fMid;
+          }
+          else
+          {
+            rMax = rMid;
+            fMax = fMid;
+          }
+        };
+      }
     }
 
-    return (rMin - rMax) / 2;
+    return rMid;
 
   }
 }
