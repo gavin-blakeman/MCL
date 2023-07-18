@@ -9,7 +9,7 @@ SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/MCL)
 
-FIND_PACKAGE(Boost 1.79 REQUIRED COMPONENTS unit_test_framework locale REQUIRED)
+FIND_PACKAGE(Boost 1.74 REQUIRED COMPONENTS unit_test_framework locale REQUIRED)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_LIST_DIR}../)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
@@ -18,6 +18,7 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR})
 
 ADD_EXECUTABLE(MCL_testSuite ${PROJECT_SOURCE_DIR}/main.cpp
+                            ${PROJECT_SOURCE_DIR}/financial/test_xirr.cpp
                              ${PROJECT_SOURCE_DIR}/functions/linearRegression.cpp
                              ${PROJECT_SOURCE_DIR}/statistics/mean_test.cpp
                              ${PROJECT_SOURCE_DIR}/statistics/median_test.cpp

@@ -41,6 +41,8 @@
   // Standard C++ library
 
 #include <chrono>
+#include <stdexcept>
+#include <utility>
 #include <vector>
 
   // MCL library
@@ -49,13 +51,10 @@ namespace MCL
 {
 
   using date_t = std::chrono::time_point<std::chrono::system_clock, std::chrono::days>;
-  using dateVector_t = std::vector<date_t>;
+  using cashflow_t = std::pair<date_t, double>;
+  using cashflowVector_t = std::vector<cashflow_t>;
 
-  template<typename T>
-  T XIRR(dateVector_t const &dateVector, std::vector<T> const &valueVector)
-  {
-
-  }
+  double XIRR(cashflowVector_t const &, double = 0.00001);
 }
 
 #endif // XIRR_H

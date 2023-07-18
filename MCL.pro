@@ -54,6 +54,7 @@ SOURCES += \
     source/angle.cpp \
     source/Shared.cpp \
     source/common.cpp \
+    source/financial/xirr.cpp \
     source/numeric.cpp \
     test/financial/test_xirr.cpp \
     test/financial/test_xirr.cpp \
@@ -72,7 +73,7 @@ HEADERS += \
     include/constants.h \
     include/definitions.h \
     include/exceptions.h \
-    include/financial/XIRR.hpp \
+    include/financial/xirr.hpp \
     include/functions/linearRegression.hpp \
     include/statistics/anderson-darling.hpp \
     include/statistics/distributionFunctions/chi-square.h \
