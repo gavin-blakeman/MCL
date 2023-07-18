@@ -1,16 +1,16 @@
 ﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
-// FILE:								futureValue.hpp
+// FILE:								XIRR.hpp
 // SUBSYSTEM:						Financial Functions.
 // LANGUAGE:						C++
 // TARGET OS:						None.
-// LIBRARY DEPENDANCE:	none
+// LIBRARY DEPENDANCE:	None
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2020-2022 Gavin Blakeman.
+//                      Copyright 2023 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -28,56 +28,34 @@
 //
 // CLASSES INCLUDED:    None
 //
-// FUNCTIONS INCLUDED:
+// FUNCTIONS INCLUDED:  XIRR
 //
 //
-// HISTORY:             2020-04-18 GGB - File Created
+// HISTORY:             2023-07-18 GGB - File Created
 //
 //*********************************************************************************************************************************
 
-#ifndef MCL_FUTUREVALUE_HPP
-#define MCL_FUTUREVALUE_HPP
+#ifndef XIRR_H
+#define XIRR_H
 
-  // Standard C++ library header files
+  // Standard C++ library
 
-#include <cstdint>
+#include <chrono>
 #include <vector>
+
+  // MCL library
 
 namespace MCL
 {
-  /// @brief Calculate the future value based on a number of periods and a constant discount rate.
-  /// @param[in] pv: The present value
-  /// @param[in] rate: The discount rate
-  /// @param[in] np: The number of periods.
-  /// @returns The future value.
-  /// @throws
-  /// @version 2020-04-18/GGB - Function created.
+
+  using date_t = std::chrono::time_point<std::chrono::system_clock, std::chrono::days>;
+  using dateVector_t = std::vector<date_t>;
 
   template<typename T>
-  T FV(T const &pv, double rate, std::uint32_t np)
+  T XIRR(dateVector_t const &dateVector, std::vector<T> const &valueVector)
   {
-    return T(pv * (1 + rate) ^ np);
+
   }
+}
 
-  /// @brief Calculate the future value based on a number of periods and a varying discount rate.
-  /// @param[in] pv: The present value
-  /// @param[in[ rates: std::vector containing the discount rates per period.
-  /// @returns The future value.
-  /// @throws
-  /// @version 2020-04-18/GGB - Function created.
-  /// @todo 1. Add multi-threading for large vectors.
-
-  template<typename T, typename R>
-  T FV(T pv, std::vector<R> rates)
-  {
-    for (R const & dr : rates)
-    {
-      pv *= (1 + dr);
-    };
-
-    return pv;
-  }
-
-} // namespace MCL
-
-#endif // MCL_FUTUREVALUE_HPP
+#endif // XIRR_H
