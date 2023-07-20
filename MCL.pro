@@ -57,7 +57,6 @@ SOURCES += \
     source/financial/xirr.cpp \
     source/numeric.cpp \
     test/financial/test_xirr.cpp \
-    test/financial/test_xirr.cpp \
     test/functions/linearRegression.cpp \
     test/main.cpp \
     test/statistics/anderson-darling_test.cpp \
