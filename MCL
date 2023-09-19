@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2022 Gavin Blakeman.
+//                      Copyright 2012-2023 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -110,6 +110,7 @@
 #include "include/TVector3D.hpp"
 
 #include "include/financial/futureValue.hpp"
+#include "include/financial/xirr.h"
 
 #include "include/functions/gcd.hpp"
 #include "include/functions/linearRegression.hpp"

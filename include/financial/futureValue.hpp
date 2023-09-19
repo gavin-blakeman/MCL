@@ -5,7 +5,7 @@
 // SUBSYSTEM:						Financial Functions.
 // LANGUAGE:						C++
 // TARGET OS:						None.
-// LIBRARY DEPENDANCE:	boost
+// LIBRARY DEPENDANCE:	none
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2

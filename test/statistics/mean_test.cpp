@@ -3,7 +3,7 @@
 
 #define TEST  // Used to exclude error reporting and avoid having to link GCL + others.
 
-#include <vector>
+#include <valarray>
 
 #include "include/statistics/mean.hpp"
 

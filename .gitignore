@@ -22,3 +22,5 @@ CMakeFiles/
 *.a
 
 MCL_testSuite
+
+CMakeCache.txt

@@ -54,7 +54,9 @@ SOURCES += \
     source/angle.cpp \
     source/Shared.cpp \
     source/common.cpp \
+    source/financial/xirr.cpp \
     source/numeric.cpp \
+    test/financial/test_xirr.cpp \
     test/functions/linearRegression.cpp \
     test/main.cpp \
     test/statistics/anderson-darling_test.cpp \
@@ -70,6 +72,7 @@ HEADERS += \
     include/constants.h \
     include/definitions.h \
     include/exceptions.h \
+    include/financial/xirr.h \
     include/functions/linearRegression.hpp \
     include/statistics/anderson-darling.hpp \
     include/statistics/distributionFunctions/chi-square.h \
@@ -97,6 +100,7 @@ HEADERS += \
     include/functions/gcd.hpp
 
 DISTFILES += \
+    CMakeLists.txt \
     changelog.txt \
     test/CMakeLists.txt
 

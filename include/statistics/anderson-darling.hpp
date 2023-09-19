@@ -234,12 +234,12 @@ namespace MCL
         Fx[indx] = fn_cdf(X_[indx]);
       }
 
-      std::cout << "Fx {" << Fx[0];
-      for (indx = 1; indx < N; indx++)
-      {
-        std::cout << ", " << Fx[indx];
-      }
-      std::cout << "}" << std::endl;
+      //std::cout << "Fx {" << Fx[0];
+//      for (indx = 1; indx < N; indx++)
+//      {
+//        std::cout << ", " << Fx[indx];
+//      }
+      //std::cout << "}" << std::endl;
 
         // Perform the analysis.
 
@@ -250,14 +250,14 @@ namespace MCL
       {
         std::size_t i = indx + 1;
         A += (2 * i - 1) * (std::log(Fx[indx]) + std::log(1 - Fx[Fx.size() - i]));
-        std::cout << "i: " << i << " A: " << A << std::endl;
+//        std::cout << "i: " << i << " A: " << A << std::endl;
       }
 
       A /= static_cast<FP_t>(N);
       A = -static_cast<FP_t>(N) - A;
 
-      std::cout << "A: " << A << std::endl;
-      std::cout << "N: " << N << std::endl;
+//      std::cout << "A: " << A << std::endl;
+//      std::cout << "N: " << N << std::endl;
 
       FP_t cv;
       FP_t AD;
@@ -283,7 +283,7 @@ namespace MCL
           }
           else
           {
-            std::cout << "pValue Check" << std::endl;
+            //std::cout << "pValue Check" << std::endl;
             pvalue = std::exp(1.2937 - 5.709 * AD + 0.0186 * MCL::pow2(AD));
           }
 
@@ -292,7 +292,7 @@ namespace MCL
             cv = criticalValues_normal_a.at(GOF.alpha) * (1 - (criticalValues_normal_b.at(GOF.alpha) / N) -
                       (criticalValues_normal_d.at(GOF.alpha) / MCL::pow2(N)));
 
-            std::cout << "CV: " << cv << std::endl;
+            //std::cout << "CV: " << cv << std::endl;
           }
           else
           {
@@ -476,9 +476,9 @@ namespace MCL
           break;
         };
       }
-      std::cout << "AD: " << AD << std::endl;
-      std::cout << "CV: " << cv << std::endl;
-      std::cout << "P: " << pvalue << std::endl;
+//      std::cout << "AD: " << AD << std::endl;
+//      std::cout << "CV: " << cv << std::endl;
+//      std::cout << "P: " << pvalue << std::endl;
 
       if (pvalue < cv)
       {
