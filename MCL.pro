@@ -10,7 +10,7 @@
 # AUTHOR:							Gavin Blakeman.
 # LICENSE:            GPLv2
 #
-#                     Copyright 2012-2022 Gavin Blakeman.
+#                     Copyright 2012-2023 Gavin Blakeman.
 #                     This file is part of the Maths Class Library (MCL)
 #
 #                     MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -54,9 +54,7 @@ SOURCES += \
     source/angle.cpp \
     source/Shared.cpp \
     source/common.cpp \
-    source/financial/xirr.cpp \
     source/numeric.cpp \
-    test/financial/test_xirr.cpp \
     test/functions/linearRegression.cpp \
     test/main.cpp \
     test/statistics/anderson-darling_test.cpp \
@@ -72,7 +70,6 @@ HEADERS += \
     include/constants.h \
     include/definitions.h \
     include/exceptions.h \
-    include/financial/xirr.h \
     include/functions/linearRegression.hpp \
     include/statistics/anderson-darling.hpp \
     include/statistics/distributionFunctions/chi-square.h \
