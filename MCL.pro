@@ -93,7 +93,6 @@ HEADERS += \
     include/trigonometry.hpp \
     include/fraction.hpp \
     include/financial/futureValue.hpp \
-    include/gcd.hpp \
     include/functions/gcd.hpp
 
 DISTFILES += \

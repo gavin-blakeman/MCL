@@ -1,37 +1,44 @@
-# Tests for MCL
+﻿# Tests for MCL
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.14 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16 FATAL_ERROR)
 
 PROJECT(MCL_TESTS)
 
 SET(CMAKE_CXX_STANDARD 20)
-SET(CMAKE_CXX_STANDARD_REQUIRED True)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/MCL)
+SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
 
-FIND_PACKAGE(Boost 1.74 REQUIRED COMPONENTS unit_test_framework locale REQUIRED)
+#find_package(Boost CONFIG)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_LIST_DIR}../)
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-MESSAGE( ${Boost_INCLUDE_DIRS})
+#INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+
+set(SOURCES
+  main.cpp
+  financial/test_xirr.cpp
+  functions/linearRegression.cpp
+  statistics/mean_test.cpp
+  statistics/median_test.cpp
+  statistics/percentile_test.cpp
+  statistics/stdev_test.cpp
+  statistics/sum_test.cpp
+  statistics/distributionFunctions/weibull_test.cpp
+  statistics/anderson-darling_test.cpp)
 
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR})
 
-ADD_EXECUTABLE(MCL_testSuite ${PROJECT_SOURCE_DIR}/main.cpp
-                            ${PROJECT_SOURCE_DIR}/financial/test_xirr.cpp
-                             ${PROJECT_SOURCE_DIR}/functions/linearRegression.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/mean_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/median_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/percentile_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/stdev_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/sum_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/distributionFunctions/weibull_test.cpp
-                             ${PROJECT_SOURCE_DIR}/statistics/anderson-darling_test.cpp
-              )
-TARGET_LINK_LIBRARIES(MCL_testSuite ${Boost_LIBRARIES})
-TARGET_LINK_LIBRARIES(MCL_testSuite MCL)
+add_executable(${PROJECT_NAME} ${SOURCES})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${Boost_LIBRARIES})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} MCL)
+
+target_include_directories(${PROJECT_NAME}
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+  PRIVATE "../GCL")
+
 
 ENABLE_TESTING()
-ADD_TEST(MCL_testSuite MCL_testSuite)
+ADD_TEST(${PROJECT_NAME} ${PROJECT_NAME})
 
-ADD_CUSTOM_COMMAND(TARGET MCL_testSuite COMMENT "Run tests" POST_BUILD  COMMAND MCL_testSuite)
+ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME} COMMENT "Run tests" POST_BUILD  COMMAND ${PROJECT_NAME})
+

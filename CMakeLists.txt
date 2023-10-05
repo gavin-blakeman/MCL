@@ -5,7 +5,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.14 FATAL_ERROR)
 PROJECT(MCL)
 
 SET(CMAKE_CXX_STANDARD 20)
-SET(CMAKE_CXX_STANDARD_REQUIRED True)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 IF(NOT DEFINED $CMAKE_BINARY_DIR)
   IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -16,21 +16,38 @@ IF(NOT DEFINED $CMAKE_BINARY_DIR)
   ENDIF()
 ENDIF(NOT DEFINED $CMAKE_BINARY_DIR)
 
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/MCL)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+set(SOURCES
+  source/financial/xirr.cpp
+  source/angle.cpp
+  source/common.cpp
+  source/numeric.cpp
+  source/Shared.cpp)
+set(HEADERS
+  include/financial/xirr.h
+  include/statistics/mean.hpp
+  include/statistics/median.hpp
+  include/statistics/minmax.hpp
+  include/statistics/percentile.hpp
+  include/statistics/sum.hpp
+  include/statistics/variance.hpp
+  include/common.h
+  include/config.h
+  include/constants.h)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_LIST_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_LIST_DIR}/../GCL)
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
+target_include_directories(${PROJECT_NAME}
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+  PRIVATE "../GCL")
 
-ADD_LIBRARY(MCL ${PROJECT_SOURCE_DIR}/source/financial/xirr.cpp
-                ${PROJECT_SOURCE_DIR}/source/angle.cpp
-                ${PROJECT_SOURCE_DIR}/source/common.cpp
-                ${PROJECT_SOURCE_DIR}/source/numeric.cpp
-                ${PROJECT_SOURCE_DIR}/source/Shared.cpp)
+#ADD_SUBDIRECTORY(test)
 
 
-ENABLE_TESTING()
 
-#FIND_PACKAGE(Boost COMPONENTS unit_test_framework REQUIRED)
-#INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
-ADD_SUBDIRECTORY(test)
+
+
+
+
+
+
