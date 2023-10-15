@@ -22,7 +22,8 @@ set(SOURCES
   source/angle.cpp
   source/common.cpp
   source/numeric.cpp
-  source/Shared.cpp)
+  source/Shared.cpp
+  )
 set(HEADERS
   include/financial/xirr.h
   include/statistics/mean.hpp
@@ -33,7 +34,9 @@ set(HEADERS
   include/statistics/variance.hpp
   include/common.h
   include/config.h
-  include/constants.h)
+  include/constants.h
+  MCL
+  )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME}
