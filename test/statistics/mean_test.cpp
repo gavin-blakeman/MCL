@@ -28,4 +28,21 @@ BOOST_AUTO_TEST_CASE(c_array, *boost::unit_test::tolerance(0.001))
   BOOST_TEST(*MCL::mean(Y.data(), Y.size()) == 62.078);
 }
 
+// Tests the running mean function.
+// Added 2023-11-14/GGB
+
+BOOST_AUTO_TEST_CASE(running_mean, *boost::unit_test::tolerance(0.001))
+{
+  std::vector<double> X = {52.21, 53.12, 54.48, 55.84, 57.20, 58.57, 59.93, 61.29, 63.11, 64.47, 66.28, 68.10, 69.92, 72.19, 74.46};
+  double mean = 0;
+  std::size_t N = 1;
+
+  for (auto const &x : X)
+  {
+    mean = MCL::mean(mean, x, N++);
+  }
+
+  BOOST_TEST(mean == 62.078);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2022 Gavin Blakeman.
+//                      Copyright 2012-2023 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -32,7 +32,8 @@
 //                      mean(valarray)
 //
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2023-11-14/GGB - Added function
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2015-07-10/GGB - Added function mean(T *)
 //                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-08-02/GGB - Updated to be 64bit compliant.
@@ -75,6 +76,20 @@
 
 namespace MCL
 {
+
+  /// @brief      Calculate the next mean of an running samples.
+  /// @param[in]  mN1: The previous mean.
+  /// @param[in]  Kn: The N'th sample.
+  /// @param[in]  Nk: The number of samples to this point.
+  /// @returns    The updated mean value.
+  /// @throws
+  /// @version    2023-11-14/GGB - Function created.
+
+  template<typename T, typename U>
+  T mean(T mN1, T kN, U Nk)
+  {
+    return mN1 + (kN - mN1) / Nk;
+  }
 
 #ifdef MCL_NOMT
 
