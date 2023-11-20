@@ -32,7 +32,7 @@
 //                      mean(valarray)
 //
 //
-// HISTORY:             2023-11-14/GGB - Added function
+// HISTORY:             2023-11-14/GGB - Added function for running mean calculation.
 //                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2015-07-10/GGB - Added function mean(T *)
 //                      2013-09-30 GGB - astroManager 2013.09 release.
@@ -88,7 +88,7 @@ namespace MCL
   template<typename T, typename U>
   T mean(T mN1, T kN, U Nk)
   {
-    return mN1 + (kN - mN1) / Nk;
+    return mN1 + (kN - mN1) / static_cast<T>(Nk);
   }
 
 #ifdef MCL_NOMT
