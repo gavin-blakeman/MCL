@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2013-2022 Gavin Blakeman.
+//                      Copyright 2013-2023 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -30,7 +30,8 @@
 //
 // FUNCTIONS INCLUDED:  median(...)
 //
-// HISTORY:             2015-09-22 GGB - astroManager 2015.09 release
+// HISTORY:             2023-11-23 GGB - Added function taking a vector.
+//                      2015-09-22 GGB - astroManager 2015.09 release
 //                      2013-09-30 GGB - astroManager 2013.09 release.
 //                      2013-07-28 GGB - File Created.
 //
@@ -43,6 +44,7 @@
 
 #include <algorithm>
 #include <valarray>
+#include <vector>
 
   // MCL Library header files.
 
@@ -52,13 +54,14 @@
 namespace MCL
 {
 
-  /// @brief Returns the median value of the data in the array.
-  /// @param[in] data:  The array to analyse for the median.
-  /// @version 2016-01-15/GGB - Use static_cast rather than C-style casting.
-  /// @version 2013-07-28/GGB - Function created.
+  /// @brief      Returns the median value of the data in the array.
+  /// @param[in]  data:  The array to analyse for the median.
+  /// @version    2023-11-23/GGB - Changed parameter to const & rather than &.
+  /// @version    2016-01-15/GGB - Use static_cast rather than C-style casting.
+  /// @version    2013-07-28/GGB - Function created.
 
   template<typename T>
-  FP_t median(std::valarray<T> &data)
+  FP_t median(std::valarray<T> const &data)
   {
     size_t elements = data.size();              // Number of elements
 
@@ -76,7 +79,8 @@ namespace MCL
     }
     else
     {
-      MCL::sort(std::begin(data), std::end(data));     // Sort the array
+      std::valarray<T> dataCopy(data);
+      MCL::sort(std::begin(dataCopy), std::end(dataCopy));     // Sort the array
 
       if ( (elements & 1) == 0)
       {
@@ -84,7 +88,7 @@ namespace MCL
 
         elements = elements >> 1;   // Divide by two
 
-        return static_cast<FP_t>((static_cast<FP_t>(data[elements - 1]) + static_cast<FP_t>(data[elements])) / 2);
+        return static_cast<FP_t>((static_cast<FP_t>(dataCopy[elements - 1]) + static_cast<FP_t>(dataCopy[elements])) / 2);
       }
       else
       {
@@ -92,7 +96,53 @@ namespace MCL
 
         elements = elements >> 1;   // Divide by two
 
-        return static_cast<FP_t>(data[elements]);   // Return the middle number.
+        return static_cast<FP_t>(dataCopy[elements]);   // Return the middle number.
+      };
+    };
+  }
+
+  /// @brief      Returns the median value of the data in the array.
+  /// @param[in]  data:  The array to analyse for the median.
+  /// @returns    The median value.
+  /// @version    2023-11-23/GGB - Function created.
+
+  template<typename T>
+  FP_t median(std::vector<T> const &data)
+  {
+    size_t elements = data.size();              // Number of elements
+
+    if (elements == 0)
+    {
+      return 0;
+    }
+    else if (elements == 1)
+    {
+      return data[0];
+    }
+    else if (elements == 2)
+    {
+      return static_cast<FP_t>((static_cast<FP_t>(data[0]) + static_cast<FP_t>(data[1])) / 2);
+    }
+    else
+    {
+      std::vector<T> dataCopy(data);
+      MCL::sort(std::begin(dataCopy), std::end(dataCopy));     // Sort the array
+
+      if ( (elements & 1) == 0)
+      {
+        // Even
+
+        elements = elements >> 1;   // Divide by two
+
+        return static_cast<FP_t>((static_cast<FP_t>(dataCopy[elements - 1]) + static_cast<FP_t>(dataCopy[elements])) / 2);
+      }
+      else
+      {
+        // Odd
+
+        elements = elements >> 1;   // Divide by two
+
+        return static_cast<FP_t>(dataCopy[elements]);   // Return the middle number.
       };
     };
   }
