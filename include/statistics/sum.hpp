@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2014-2022 Gavin Blakeman.
+//                      Copyright 2014-2023 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -101,9 +101,10 @@ namespace MCL
     };
   }
 
-  /// @brief Determines the sum of the array
-  //
-  // 2014-01-13/GGB - Function created.
+  /// @brief      Determines the sum of the array
+  /// @param[in]  data: A valarray to sum.
+  /// @throws
+  /// @version    2014-01-13/GGB - Function created.
 
   template<typename T>
   FP_t sum(std::valarray<T> &data)

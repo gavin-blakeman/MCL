@@ -81,10 +81,10 @@ namespace MCL
   /// @throws
   /// @version    2023-11-14/GGB - Function created.
 
-  template<typename T, typename U>
-  T mean(T mN1, T kN, U Nk)
+  template<typename T, typename U, typename V>
+  T mean(T mN1, V kN, U Nk)
   {
-    return mN1 + (kN - mN1) / static_cast<T>(Nk);
+    return mN1 + (static_cast<T>(kN) - mN1) / static_cast<T>(Nk);
   }
 
   /// @brief      Returns the weighted mean of data supplied as two vectors.
@@ -173,6 +173,37 @@ namespace MCL
     };
   }
 
+  /// @brief    Calculates the mean of a vector.
+  /// @param[in]  v: The vector to calculate.
+  /// @returns    An optional containing the mean. (The mean is undefined if v.size() == 0)
+  /// @throws
+  /// @version    2024-12-21/GGB - Function created.
+
+  template<typename T>
+  std::optional<T> mean(std::vector<T> const &v)
+  {
+    if (v.empty())
+    {
+      return std::optional<T>{};
+    }
+    else if (v.size() == 1)
+    {
+      return std::optional<T>{v[0]};
+    }
+    else
+    {
+      FP_t m = 0;
+      std::size_t cnt = 0;
+
+      for (auto const &val: v)
+      {
+        m = mean(m, val, ++cnt);
+      };
+
+      return std::optional<T>{static_cast<T>(m)};
+    }
+  }
+
   /// @brief Thread function called by MCL::mean to determine the mean of an array
   /// @param[in] data: The data to calculate the mean of
   /// @param[in] indexStart: The starting index in the array
@@ -217,7 +248,6 @@ namespace MCL
       mean += (data[index] - mean) / (++count);
     };
   }
-
 
 
   /// @brief Calculate the mean of a c-style array of data.
