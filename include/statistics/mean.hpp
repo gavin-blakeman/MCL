@@ -5,7 +5,7 @@
 // SUBSYSTEM:						Statistics Functions.
 // LANGUAGE:						C++
 // TARGET OS:						WINDOWS/UNIX/LINUX/MAC
-// LIBRARY DEPENDANCE:	boost
+// LIBRARY DEPENDANCE:	GCL
 // NAMESPACE:						MCL
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
@@ -53,20 +53,16 @@
 #include <optional>
 #include <thread>
 #include <valarray>
+#include <utility>
 #include <vector>
+
+  // Miscellaneous library header files
+
+#include <GCL>
 
   // MCL Library header files
 
 #include "../config.h"
-
-#ifndef MCL_NOBOOST
-    // Boost Library
-  #ifndef MCL_NOMT
-    #include "boost/thread/thread.hpp"        /* C++17 std::thread does not have a thread group. So easier to still use boost::thread. */
-  #endif // MCL_NOMT
-
-#endif  // MCL_NOBOOST
-
 
 /// @file
 /// The file provides a number of templated mean functions. These functions are provided in bost single-thread and multi-threaded
@@ -91,7 +87,59 @@ namespace MCL
     return mN1 + (kN - mN1) / static_cast<T>(Nk);
   }
 
-#ifdef MCL_NOMT
+  /// @brief      Returns the weighted mean of data supplied as two vectors.
+  /// @param[in]  N: vector containing the values.
+  /// @param[in]  W: vector containing the weights.
+  /// @returns    double value containing the weighted mean.
+  /// @throws
+  /// @version    2023-11-29/GGB - Function created.
+
+  template<typename T, typename U>
+  double mean_w(std::vector<T> const &N, std::vector<U> const &W)
+  {
+    RUNTIME_ASSERT(N.size() == W.size(), "mean_w requires both vectors to be the same size.");
+    RUNTIME_ASSERT(N.size() != 0, "mean_w cannot calulate mean with no data.");
+
+    double sN = 0;
+    double sW = 0;
+
+    for (std::size_t indx = 0; indx < N.size(); indx++)
+    {
+      sN += N[indx] * W[indx];
+      sW += W[indx];
+    }
+
+    RUNTIME_ASSERT(sW != 0, "Sum of weights in a weighted mean cannot be zero.");
+
+    return sN / sW;
+  }
+
+  /// @brief      Returns the weighted mean of data supplied as pairs in a vector.
+  /// @param[in]  D: a vector of pairs. THe first value in the pair is the N and the second is the W.
+  /// @returns    double value containing the weighted mean.
+  /// @throws
+  /// @version    2023-11-29/GGB - Function created.
+
+  template<typename T, typename U>
+  double mean_w(std::vector<std::pair<T, U>> const &D)
+  {
+    RUNTIME_ASSERT(D.size() > 0, "Unable to calculate weighted mean with no data.");
+
+    double sN = 0;
+    double sW  = 0;
+
+    for (auto const &d : D)
+    {
+      sN += d.first * d.second;
+      sW += d.second;
+    };
+
+    RUNTIME_ASSERT(sW != 0, "Sum of weights in a weighted mean cannot be zero.");
+
+    sN /= sW;
+
+    return sN;
+  }
 
   /// @brief Calculate the mean of a c-style array of data.
   /// @param[in] data - The data array
@@ -124,7 +172,6 @@ namespace MCL
       return true;
     };
   }
-#else // MCL_NOMT
 
   /// @brief Thread function called by MCL::mean to determine the mean of an array
   /// @param[in] data: The data to calculate the mean of
@@ -188,8 +235,7 @@ namespace MCL
     size_t numberOfThreads;
     size_t threadNumber;
     size_t stepSize;
-    boost::thread_group threadGroup;
-    boost::thread *thread;
+    std::vector<std::thread> threadGroup;
     size_t indexBegin = 0, indexEnd = 0;
     size_t index;
     FP_t returnValue = 0;
@@ -231,13 +277,13 @@ namespace MCL
         {
           indexEnd += stepSize;
         };
-        thread = new boost::thread(&meanThread<T>, data, indexBegin, indexEnd,
-                                 boost::ref(means[threadNumber]), boost::ref(counts[threadNumber]));
-        threadGroup.add_thread(thread);
-        thread = nullptr;
+        threadGroup.emplace_back(&meanThread<T>, data, indexBegin, indexEnd, std::ref(means[threadNumber]), std::ref(counts[threadNumber]));
       };
 
-      threadGroup.join_all();     // Wait for all the threads to finish.
+      for (auto &thread: threadGroup)
+      {
+        thread.join();     // Wait for all the threads to finish.
+      };
 
       for(index = 0; index < numberOfThreads; index++)
       {
@@ -314,8 +360,6 @@ namespace MCL
       return 0;
     }
   }
-
-#endif  // MCL_NOMT
 
 }  // namespace MCL
 

@@ -9,8 +9,8 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 IF(NOT DEFINED $CMAKE_BINARY_DIR)
   IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    SET(BUILD_FOR_WIN TRUE)    
-  ELSE()    
+    SET(BUILD_FOR_WIN TRUE)
+  ELSE()
   ENDIF()
 ENDIF(NOT DEFINED $CMAKE_BINARY_DIR)
 
@@ -23,11 +23,13 @@ set(SOURCES
   source/Shared.cpp
   )
 set(HEADERS
+  include/financial/futureValue.hpp
   include/financial/xirr.h
   include/statistics/mean.hpp
   include/statistics/median.hpp
   include/statistics/minmax.hpp
   include/statistics/percentile.hpp
+  include/statistics/stdev.hpp
   include/statistics/sum.hpp
   include/statistics/variance.hpp
   include/common.h
@@ -39,7 +41,7 @@ set(HEADERS
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE "../GCL")
+  PRIVATE ../GCL)
 
 ADD_SUBDIRECTORY(test)
 
