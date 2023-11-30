@@ -59,19 +59,8 @@
 
 #include "../config.h"
 
-
-#ifndef MCL_NOBOOST
-  // Boost Library
-#ifndef MCL_NOMT
-#include "boost/thread/thread.hpp"
-#endif //MCL_NOMT
-
-#endif // MCL_NOBOOST
-
 namespace MCL
 {
-
-#ifdef MCL_NOBOOST
 
   /// @brief Function to determine the maximum value in an array.
   /// @param[out] maxValue - The maximum value in the array.
@@ -134,26 +123,9 @@ namespace MCL
     };
   }
 
-  /// @brief Thread function to determine the minimum and maximum value in an array.
-  //
-  // 2013-08-02/GGB - 1) Converted to use type T for return values.
-  //                  2) Changed parameter to const &
-  // 2013-03-11/GGB - Converted to use std::valarray<> as storage type.
-  // 2012-11-30/GGB - Function created.
-
-  template<typename T>
-  void minmaxThread(T *data, size_t indexStart, size_t indexEnd, T &min, T &max)
-  {
-    size_t index;
-
-    max = min = data[indexStart];
-
-
-  }
-
-  /// @brief Function to determine the minimum value in an array.
-  /// @param[in] data - The data array
-  /// @param[in] dataCount - The number of elements in the array.
+  /// @brief      Function to determine the minimum value in an array.
+  /// @param[in]  data: The data array
+  /// @param[in]  dataCount: The number of elements in the array.
   /// @returns true - success
   /// @returns false - failure
   /// @throws None.
@@ -188,8 +160,6 @@ namespace MCL
       return true;
     };
   }
-
-#else // MCL_NOBOOST
 
   /// @brief Thread function to determine the maximum value in an array.
   /// @param[in] data:
@@ -589,8 +559,7 @@ namespace MCL
       return std::make_pair(min, max);
     };
   }
-#endif // MCL_NOBOOST
 
 }  // namespace MCL
 
-#endif  // MCL_STATISTICS_MINMAX_HPP
+#endif //MCL_STATISTICS_MINMAX_HPP
