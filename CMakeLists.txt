@@ -1,4 +1,4 @@
-﻿# MCL Library CMAKE file
+# MCL Library CMAKE file
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14 FATAL_ERROR)
 
@@ -37,13 +37,19 @@ set(HEADERS
   include/constants.h
   MCL
   )
+  
+  set(DIRECTORIES  
+  ../GCL  
+  ../fmt/include
+  ${Boost_INCLUDE_DIRS}
+  )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE ../GCL)
+  PRIVATE ${DIRECTORIES})
 
-ADD_SUBDIRECTORY(test)
+#ADD_SUBDIRECTORY(test)
 
 
 
