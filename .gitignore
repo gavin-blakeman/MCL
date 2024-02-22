@@ -24,3 +24,7 @@ CMakeFiles/
 MCL_testSuite
 
 CMakeCache.txt
+
+test/.cproject
+
+test/.project
