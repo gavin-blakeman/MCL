@@ -39,7 +39,8 @@ set(HEADERS
   )
   
   set(DIRECTORIES  
-  ../GCL  
+  ${CMAKE_SOURCE_DIR}/GCL
+  ${CMAKE_SOURCE_DIR}/SCL    
   ../fmt/include
   ${Boost_INCLUDE_DIRS}
   )
