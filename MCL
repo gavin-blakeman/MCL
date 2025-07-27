@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2012-2023 Gavin Blakeman.
+//                      Copyright 2012-2025 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -98,12 +98,17 @@
 /// <a href="http://www.gnu.org/licenses/">The GNU Project</a>
 
 
+#include "include/vectorN.hpp"
+#include "include/functions.hpp"
+
+#ifdef __EMBEDDED__
+#else
+
 #include "include/angle.h"
 #include "include/config.h"
 #include "include/constants.h"
 #include "include/fraction.hpp"
 
-#include "include/functions.hpp"
 #include "include/numeric.h"
 #include "include/trigonometry.hpp"
 #include "include/TPoint2D.hpp"
@@ -127,4 +132,5 @@
 
 #include "include/utility/sort.hpp"
 
+#endif
 #endif // MCL_H
