@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2022 Gavin Blakeman.
+//                      Copyright 2011-2025 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -42,12 +42,12 @@
 
 namespace MCL
 {
-  FP_t const PI         = 3.141592653589793238462643;       // PI
-  const FP_t PI_2       = PI * 2;                           // 2 * PI
-  FP_t const D_SQRT2    = std::sqrt(2);                     // sqrt(2)
-  FP_t const SQRT3      = std::sqrt(3);
-  FP_t const D_SQRT1_2  = 1/D_SQRT2;                        // 1/sqrt(2)
-  FP_t const PI_DIV_2   = PI / 2;                           // PI / 2
+  constexpr FP_t PI         = 3.141592653589793238462643;       // PI
+  constexpr FP_t PI_2       = PI * 2;                           // 2 * PI
+  constexpr FP_t D_SQRT2    = std::sqrt(2);                     // sqrt(2)
+  constexpr FP_t SQRT3      = std::sqrt(3);
+  constexpr FP_t D_SQRT1_2  = 1/D_SQRT2;                        // 1/sqrt(2)
+  constexpr FP_t PI_DIV_2   = PI / 2;                           // PI / 2
 
 
     // Time
@@ -58,9 +58,9 @@ namespace MCL
 
     // Angles
 
-  FP_t const D_D2R      = PI / 180;                         ///< Degree to radian conversion.
-  FP_t const D_R2D      = 180 / PI;                         ///< Radians to degrees conversion.
-  FP_t const D_R2H      = 12 / PI;                          ///< Radians to hours conversion.
+  constexpr FP_t D_D2R      = PI / 180;                         ///< Degree to radian conversion.
+  constexpr FP_t D_R2D      = 180 / PI;                         ///< Radians to degrees conversion.
+  constexpr FP_t D_R2H      = 12 / PI;                          ///< Radians to hours conversion.
 
 }
 

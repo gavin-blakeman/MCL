@@ -1,7 +1,7 @@
 ﻿//*********************************************************************************************************************************
 //
 // PROJECT:							Math Class Library
-// FILE:								TPoint2D.hpp
+// FILE:								point2D.hpp
 // SUBSYSTEM:						Point template class.
 // LANGUAGE:						C++
 // TARGET OS:						WINDOWS/UNIX/LINUX/MAC
@@ -10,7 +10,7 @@
 // AUTHOR:							Gavin Blakeman.(GGB)
 // LICENSE:             GPLv2
 //
-//                      Copyright 2011-2022 Gavin Blakeman.
+//                      Copyright 2011-2025 Gavin Blakeman.
 //                      This file is part of the Maths Class Library (MCL)
 //
 //                      MCL is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
@@ -38,58 +38,64 @@
 //
 //*********************************************************************************************************************************
 
-#ifndef MCL_TPOINT_H
-#define MCL_TPOINT_H
+#ifndef MCL_POINT2D_H
+#define MCL_POINT2D_H
 
+#ifndef __EMBEDDED__
 #include "exceptions.h"
-
 #include <GCL>
+#endif
 
 namespace MCL
 {
   template<typename T>
-  class TPoint2D
+  class point2D
   {
-  private:
-    T xVal;
-    T yVal;
-
-  protected:
   public:
-    inline TPoint2D() : xVal(0), yVal(0) {}
-    inline TPoint2D(T const &newX, T const &newY) : xVal(newX), yVal(newY) {}
-    inline TPoint2D(TPoint2D const &toCopy) : xVal(toCopy.xVal), yVal(toCopy.yVal) {}
+    inline point2D() = default;
+    inline point2D(point2D const &) = default;
+    inline point2D(point2D &&) = default;
+    inline point2D(T const &newX, T const &newY) : xVal(newX), yVal(newY) {}
 
-    bool operator==(TPoint2D const &rhs) const { return ((xVal == rhs.xVal) && (yVal == rhs.yVal)); }
+    inline point2D &operator=(point2D const &) = default;
+    inline point2D &operator=(point2D &&) = default;
+
+    inline T X() const noexcept { return xVal; }
+    inline T &X() noexcept { return xVal; }
+    inline T Y() const noexcept { return yVal; }
+    inline T &Y() noexcept { return yVal; }
+
+
+    bool operator==(point2D const &rhs) const { return ((xVal == rhs.xVal) && (yVal == rhs.yVal)); }
 
     /// @brief Unitary negative operator
     /// @returns An instance containing the negative of the point. (-x, -y)
     /// @throws
-    /// @version 2020-03-01/GGB - Function created.
 
-    virtual TPoint2D operator-() const
+    point2D operator-() const
     {
       return TPoint2D(-xVal, -yVal);
     }
 
-    virtual TPoint2D &operator-=(TPoint2D const &);
+    point2D &operator-=(point2D const &);
 
-    TPoint2D<T> operator*=(double const &);
-    TPoint2D<T> operator*(double const &) const;
+    point2D<T> operator*=(double const &);
+    point2D<T> operator*(double const &) const;
 
     /// @brief Division operator
     /// @param[in] divisor: The divisor to apply.
     /// @returns The point divided by the divisor.
-    /// @version 2011-08-28/GGB - Function created
 
     template<typename U>
-    TPoint2D operator /(U divisor)
+    point2D operator /(U divisor)
     {
-      TPoint2D<T> retVal;
+      point2D<T> retVal;
 
       if (divisor == 0)
       {
+#ifndef __EMBEDDED__
         ERRORMESSAGE("NUMERIC: Value out of range.");
+#endif
       }
       else
       {
@@ -100,18 +106,16 @@ namespace MCL
       return retVal;
     }
 
-    TPoint2D &operator=(TPoint2D const &);
-    virtual TPoint2D operator-(const TPoint2D &);
+    virtual point2D operator-(const point2D &);
 
     /// @brief Typecast operator
     /// @returns The value typecast to the new type.
     /// @throws None.
-    /// @version 2013-06-08/GGB - Function created.
 
     template<typename U>
-    operator TPoint2D<U>() const
+    operator point2D<U>() const
     {
-      TPoint2D<U> returnValue;
+      point2D<U> returnValue;
 
       returnValue.x() = (U) xVal;
       returnValue.y() = (U) yVal;
@@ -128,10 +132,13 @@ namespace MCL
     inline T &x() { return xVal;}
     inline T &y() { return yVal;}
 
-    inline TPoint2D &set(T _x, T _y) { xVal = _x; yVal = _y; return *this;}
+    inline point2D &set(T _x, T _y) { xVal = _x; yVal = _y; return *this;}
 
+#ifndef __EMBEDDED__
     template<typename U>
-    inline friend std::ostream &operator<<(std::ostream &, TPoint2D<U> const &);
+    inline friend std::ostream &operator<<(std::ostream &, point2D<U> const &);
+
+#endif
 
     /// @brief Operator() for assigning values.
     /// @param[in] x: x-value
@@ -145,14 +152,12 @@ namespace MCL
       yVal = y;
     }
 
-
     /// @brief Addition assignment operator with a constant value. Constant value gets added to both members.
     /// @param[in] rhs: The value to add to the members.
     /// @throws None.
-    /// @version 2020-02-13/GGB - Function created.
 
     template<typename U>
-    TPoint2D &operator +=(U rhs)
+    point2D &operator +=(U rhs)
     {
       xVal += static_cast<T>(rhs);
       yVal += static_cast<T>(rhs);
@@ -166,12 +171,16 @@ namespace MCL
     /// @version 2020-03-01/GGB - Function created.
 
     template<typename U>
-    TPoint2D operator+(U rhs)
+    point2D operator+(U rhs)
     {
-      TPoint2D temp = *this;
+      point2D temp = *this;
       temp += rhs;
       return temp;
     }
+
+  private:
+    T xVal;
+    T yVal;
 
   };  // class TPoint2D.
 
@@ -183,9 +192,9 @@ namespace MCL
   /// @version 2011-08-28/GGB - Function created
 
   template<typename T>
-  TPoint2D<T> TPoint2D<T>::operator-(const TPoint2D<T> &rhs)
+  point2D<T> point2D<T>::operator-(const point2D<T> &rhs)
   {
-    return TPoint2D<T>(*this) -= rhs;
+    return point2D<T>(*this) -= rhs;
   }
 
   // -= operator
@@ -193,11 +202,11 @@ namespace MCL
   // 2011-08-28/GGB - Function created.
 
   template<typename T>
-  TPoint2D<T> &TPoint2D<T>::operator-=(const TPoint2D<T> &rhs)
+  point2D<T> &point2D<T>::operator-=(const point2D<T> &rhs)
   {
     if (this == &rhs)
     {
-        // Self assignement. Makes all values equal to zero.
+      // Self assignment. Makes all values equal to zero.
 
       xVal = yVal = 0;
     }
@@ -210,31 +219,16 @@ namespace MCL
     return (*this);
   }
 
-  /// @brief Copy operator for class.
-  /// @throws None.
-  /// @version 2012-01-13/GGB - Function created
-
-  template<typename T>
-  TPoint2D<T> &TPoint2D<T>::operator=(TPoint2D<T> const &rhs)
-  {
-    if ( this != &rhs )
-    {
-      xVal = rhs.xVal;
-      yVal = rhs.yVal;
-    };
-
-    return *this;
-  }
-
   /// @brief Stream insertion function for the class.
   /// @param[in] out: The output stream.
   /// @param[in] toOut: The point to send to the stream.
   /// @returns The output stream.
   /// @throws None.
-  /// @version 2013-03-02/GGB - Function created.
+
+#ifndef __EMBEDDED__
 
   template<typename T>
-  std::ostream &operator<<(std::ostream &out, TPoint2D<T> const &toOut)
+  std::ostream &operator<<(std::ostream &out, point2D<T> const &toOut)
   {
     //out << "x: ";// << toOut.xVal << " y: " << toOut.yVal;
 
@@ -243,12 +237,14 @@ namespace MCL
     return out;
   }
 
+#endif
+
   /// @brief Friend multiplication function.
   /// @param[in] rhs: The right hand value.
   /// @version 2014-03-07/GGB - Function created.
 
   template<typename T>
-  TPoint2D<T> TPoint2D<T>::operator*= (double const &rhs)
+  point2D<T> point2D<T>::operator*= (double const &rhs)
   {
     xVal *= rhs;
     yVal *= rhs;
@@ -262,9 +258,9 @@ namespace MCL
   /// @version 2014-03-07/GGB - Function created.
 
   template<typename T>
-  TPoint2D<T> TPoint2D<T>::operator* (double const &rhs) const
+  point2D<T> point2D<T>::operator* (double const &rhs) const
   {
-    return TPoint2D<T>(*this) *= rhs;
+    return point2D<T>(*this) *= rhs;
   }
 
 }  // namespace MCL
